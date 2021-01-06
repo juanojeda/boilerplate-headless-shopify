@@ -1,32 +1,56 @@
-import Link from 'next/link'
+import { useGraphQL } from "graphql-react";
+import dynamic from "next/dynamic";
+import env from "../env.json";
 
-import queryGraphql from '../shared/query-graphql'
+const Catalog = dynamic(import("../components/Catalog"), { ssr: false });
 
-export default function UserListing({ users }) {
+const isClient = typeof window !== "undefined";
+
+export default function IndexPage() {
+  const { loading, cacheValue: { data } = {} } = useGraphQL({
+    fetchOptionsOverride(options) {
+      options.url = `https://${env.SHOPIFY_DOMAIN}/api/2020-10/graphql.json`;
+      options.headers["X-Shopify-Storefront-Access-Token"] =
+        env.SHOPIFY_ACCESS_TOKEN;
+      options.headers["Content-Type"] = "application/json";
+    },
+    operation: {
+      query: /* GraphQL */ `
+        {
+          collections(first: 1) {
+            edges {
+              node {
+                products(first: 50) {
+                  edges {
+                    node {
+                      id
+                      title
+                      availableForSale
+                      totalInventory
+                      description
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      `,
+    },
+    loadOnMount: true,
+    loadOnReload: true,
+    loadOnReset: true,
+  });
+
   return (
     <div>
-      <h1>User Listing</h1>
-      <ul>
-        {users.map((user) => (
-          <li key={user.username}>
-            <Link href="/[username]" as={`/${user.username}`}>
-              <a>{user.name}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {data ? (
+        <Catalog productData={data} />
+      ) : loading ? (
+        <div>Loading...</div>
+      ) : (
+        <div>Error!</div>
+      )}
     </div>
-  )
-}
-
-export async function getStaticProps() {
-  const { users } = await queryGraphql(`
-    query {
-      users {
-        name
-        username
-      }
-    }
-  `)
-  return { props: { users } }
+  );
 }
