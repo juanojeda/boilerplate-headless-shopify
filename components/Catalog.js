@@ -4,7 +4,7 @@ import env from "../env.json";
 import useShopify from "../hooks/useShopify";
 
 const Catalog = ({ productData }) => {
-  const { cart, client, loading } = useShopify({
+  const { cart, loading } = useShopify({
     domain: env.SHOPIFY_DOMAIN,
     storefrontAccessToken: env.SHOPIFY_ACCESS_TOKEN,
   });
