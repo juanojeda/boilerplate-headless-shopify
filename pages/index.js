@@ -20,6 +20,9 @@ export default function IndexPage() {
           collections(first: 1) {
             edges {
               node {
+                id
+                handle
+                title
                 products(first: 50) {
                   edges {
                     node {
