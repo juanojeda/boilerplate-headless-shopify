@@ -62,7 +62,7 @@ const getGenericDispatchersFromActions = (actions, dispatcher) =>
       ...acc,
       [actionKey]: useCallback(
         (payload) => dispatcher({ type: currAction, payload }),
-        [shopifyD]
+        [dispatcher]
       ),
     };
   }, {});
@@ -73,7 +73,7 @@ const useShopify = ({ domain, storefrontAccessToken }) => {
     shopifyDispatch,
   ] = useReducer(reducer, INIT_STATE);
 
-  const dispatch = getGenericDispatchersFromActions(actions, shopifyDispatch);
+  const dispatch = getGenericDispatchersFromActions(ACTIONS, shopifyDispatch);
 
   // create the client
   useEffect(() => {
