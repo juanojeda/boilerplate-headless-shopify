@@ -16,6 +16,17 @@ const catalogGQL = {
                   title
                   availableForSale
                   totalInventory
+                  variants(first: 1) {
+                    edges {
+                      node {
+                        id
+                        priceV2 {
+                          amount
+                          currencyCode
+                        }
+                      }
+                    }
+                  }
                   images(first: 2) {
                     edges {
                       node {
@@ -23,14 +34,6 @@ const catalogGQL = {
                         altText
                         id
                       }
-                    }
-                  }
-                  priceRange {
-                    maxVariantPrice {
-                      amount
-                    }
-                    minVariantPrice {
-                      amount
                     }
                   }
                 }

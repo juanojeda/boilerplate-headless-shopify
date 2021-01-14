@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useReducer } from "react";
+import { useCallback, useEffect, useReducer } from "react";
 import ShopifyBuy from "shopify-buy";
 
 const INIT_STATE = {
@@ -99,6 +99,7 @@ const useShopify = ({ domain, storefrontAccessToken }) => {
     createCart();
   }, [client, dispatch.newCart]);
 
+  // fetch products
   useEffect(() => {
     if (!client) return;
 
@@ -113,13 +114,14 @@ const useShopify = ({ domain, storefrontAccessToken }) => {
     fetchAllProducts();
   }, [client, dispatch.setProducts]);
 
+  // fetch collections
   useEffect(() => {
     if (!client) return;
 
     dispatch.setLoading(true);
 
     const fetchAllCollections = async () => {
-      const allCollections = await client.collection.fetchAll();
+      const allCollections = await client.collection.fetchAllWithProducts();
 
       dispatch.setCollections(allCollections);
     };
@@ -127,12 +129,32 @@ const useShopify = ({ domain, storefrontAccessToken }) => {
     fetchAllCollections();
   }, [client, dispatch.setCollections]);
 
+  const addItem = async (productId) => {
+    dispatch.setLoading(true);
+    const newCheckout = await client.checkout.addLineItems(cart.id, {
+      quantity: 1,
+      variantId: productId,
+    });
+
+    dispatch.newCart(newCheckout);
+  };
+
+  const getCollectionByHandle = useCallback(
+    (handleToGet) =>
+      collections
+        ? collections.find((collection) => collection.handle === handleToGet)
+        : null,
+    [collections]
+  );
+
   return {
     client,
     cart,
     loading,
     products,
     collections,
+    addItem,
+    getCollectionByHandle,
   };
 };
 
