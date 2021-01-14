@@ -14,7 +14,6 @@ const CartMini = ({ cart }) => {
 
 const Cart = () => {
   const { cart, loading } = useContext(ShopifyContext);
-  console.log(cart);
 
   return cart && !loading ? (
     <CartMini cart={cart}>Cart</CartMini>
