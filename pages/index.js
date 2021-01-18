@@ -10,12 +10,13 @@ export default function IndexPage() {
   const [homeCollection, setHomeCollection] = useState(null);
 
   useEffect(() => {
+    if (!unwrapGqlEdges) return;
     const { collections } = unwrapGqlEdges(data);
     const homePageCollection = collections.filter(
       ({ handle }) => handle === "frontpage"
     )[0];
     setHomeCollection(homePageCollection);
-  }, [data]);
+  }, [data, unwrapGqlEdges]);
 
   return (
     <div>

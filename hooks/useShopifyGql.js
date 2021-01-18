@@ -1,13 +1,11 @@
 import { useGraphQL } from "graphql-react";
 import catalogGQL from "../graphql/catalogGQL";
-import env from "../env.json";
-
 const useShopifyGql = () =>
   useGraphQL({
     fetchOptionsOverride(options) {
-      options.url = `https://${env.SHOPIFY_DOMAIN}/api/2020-10/graphql.json`;
+      options.url = `https://${process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN}/api/2020-10/graphql.json`;
       options.headers["X-Shopify-Storefront-Access-Token"] =
-        env.SHOPIFY_ACCESS_TOKEN;
+        process.env.NEXT_PUBLIC_SHOPIFY_ACCESS_TOKEN;
       options.headers["Content-Type"] = "application/json";
     },
     operation: catalogGQL,
