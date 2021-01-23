@@ -7548,6 +7548,10 @@ natural-orderby@^2.0.1:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/natural-orderby/-/natural-orderby-2.0.3.tgz#8623bc518ba162f8ff1cdb8941d74deb0fdcc016"
 
+neat-components@^1.0.31:
+  version "1.0.31"
+  resolved "https://registry.yarnpkg.com/neat-components/-/neat-components-1.0.31.tgz#f71a4e7cd4dd9ecae39a7308889fe901eb8a7d80"
+
 needle@^2.2.1:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/needle/-/needle-2.6.0.tgz#24dbb55f2509e2324b4a99d61f413982013ccdbe"

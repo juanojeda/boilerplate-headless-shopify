@@ -5,6 +5,7 @@
   "dependencies": {
     "@shopify/buy-button-js": "^2.1.7",
     "graphql-react": "^11.0.1",
+    "neat-components": "^1.0.31",
     "next": "^10.0.4",
     "next-graphql-react": "^8.0.0",
     "next-on-netlify": "^2.8.4",
