@@ -13,7 +13,7 @@ const StyledAnchor = styled.a`
 const Logo = ({ className }) => (
   <Link href="/">
     <StyledAnchor className={className}>
-      <StyledImg src="/images/logo.svg" />
+      <StyledImg src="/images/logo.png" />
     </StyledAnchor>
   </Link>
 );
