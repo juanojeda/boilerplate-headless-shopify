@@ -1,7 +1,7 @@
 {
-  "name": "with-graphql-react",
+  "name": "boilerplate-headless-shopify",
   "private": true,
-  "license": "MIT",
+  "license": "",
   "dependencies": {
     "@shopify/buy-button-js": "^2.1.7",
     "graphql-react": "^11.0.1",
