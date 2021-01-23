@@ -7,11 +7,11 @@ Based on the [Next.js example with `graphql-react`](https://github.com/vercel/ne
 
 
 ## Toolkit
-- React
-- NextJS (server-side rendering, routing, framework)
-- Shopify SDK - connect to shopify as headless CMS
-- Styled Components - css in js
-- Neat Components - layout
+- [React](reactjs.org/)
+- [NextJS](https://nextjs.org) (server-side rendering, routing, framework)
+- [Shopify SDK](https://shopify.github.io/js-buy-sdk/) - connect to shopify as headless CMS
+- [Styled Components](https://styled-components.com/) - css in js
+- [Neat Components](https://github.com/magicink/neat-components) - layout
 
 ## How to use
 
