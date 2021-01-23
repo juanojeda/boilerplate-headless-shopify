@@ -7,6 +7,7 @@
     "graphql-react": "^11.0.1",
     "next": "^10.0.4",
     "next-graphql-react": "^8.0.0",
+    "next-on-netlify": "^2.8.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "shopify-buy": "^2.11.0",
@@ -15,6 +16,11 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "preview-dev": "npm run build && netlify dev -t",
+    "postbuild": "next-on-netlify"
+  },
+  "devDependencies": {
+    "netlify-cli": "^3.4.2"
   }
 }
