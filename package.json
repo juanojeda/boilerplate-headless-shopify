@@ -8,6 +8,7 @@
     "next": "^10.0.4",
     "next-graphql-react": "^8.0.0",
     "next-on-netlify": "^2.8.4",
+    "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "shopify-buy": "^2.11.0",
