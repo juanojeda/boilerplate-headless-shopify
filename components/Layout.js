@@ -1,16 +1,17 @@
-import FONTS from "../shared/ConstFonts.js";
-import GlobalStyles from "../shared/GlobalStyles.js";
-import FontsCDN from "./FontsCDN.js";
+import styled from "styled-components";
+import { gridVisual } from "neat-components";
 import Header from "./Header.js";
+
+const Wrapper = styled.div`
+  ${({ theme }) => gridVisual(theme)}
+`;
 
 const Layout = ({ children }) => {
   return (
-    <div>
-      <FontsCDN fonts={FONTS} />
-      <GlobalStyles />
+    <Wrapper>
       <Header />
       <div>{children}</div>
-    </div>
+    </Wrapper>
   );
 };
 
