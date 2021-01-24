@@ -17,16 +17,13 @@ export const useCatalogData = () => {
 };
 
 export const WithCatalogData = ({ catalogHandle, children }) => {
-  const { loading, cacheValue: { data } = {} } = useShopifyGql();
+  const { loading, cacheValue: { data } = {} } = useShopifyGql(catalogHandle);
   const [catalogCollection, setCatalogCollection] = useState(null);
 
   useEffect(() => {
     if (!data) return;
-    const { collections } = unwrapGqlEdges(data);
-    const homePageCollection = collections.filter(
-      ({ handle }) => handle === catalogHandle
-    )[0];
-    setCatalogCollection(homePageCollection);
+    const { collectionByHandle } = unwrapGqlEdges(data);
+    setCatalogCollection(collectionByHandle);
   }, [data, unwrapGqlEdges]);
 
   return (
