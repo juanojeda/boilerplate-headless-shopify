@@ -1,6 +1,6 @@
 const NAV_ITEMS = [
   {
-    title: "Sale",
+    title: "Home",
     route: "/",
   },
   {
