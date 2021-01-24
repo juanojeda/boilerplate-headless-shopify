@@ -3,9 +3,9 @@ import { WithCatalogData } from "../hooks/useCatalog";
 
 const Catalog = dynamic(import("../components/Catalog"), { ssr: false });
 
-export default function IndexPage() {
+export default function SoldPage() {
   return (
-    <WithCatalogData catalogHandle="sale">
+    <WithCatalogData catalogHandle="sold">
       <Catalog />
     </WithCatalogData>
   );
