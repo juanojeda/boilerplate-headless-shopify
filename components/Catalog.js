@@ -1,6 +1,8 @@
+import { useCatalogData } from "../hooks/useCatalog";
 import ProductThumb from "./ProductThumb";
 
-const Catalog = ({ productData }) => {
+const Catalog = () => {
+  const { productData } = useCatalogData();
   const addToCart = (id) => console.log(id);
 
   return (
