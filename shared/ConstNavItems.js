@@ -1,11 +1,19 @@
 const NAV_ITEMS = [
   {
-    title: "Home",
+    title: "Sale",
     route: "/",
   },
   {
-    title: "Mock item",
-    route: "https://google.com/",
+    title: "Sold",
+    route: "/sold",
+  },
+  {
+    title: "About",
+    route: "/about",
+  },
+  {
+    title: "Knife Care",
+    route: "/knife-care",
   },
 ];
 
