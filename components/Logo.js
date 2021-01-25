@@ -6,11 +6,15 @@ const StyledImg = styled.img`
   width: 150px;
 `;
 
+const StyledAnchor = styled.a`
+  display: inline-block;
+`;
+
 const Logo = ({ className }) => (
   <Link href="/">
-    <a>
+    <StyledAnchor>
       <StyledImg src="/images/logo.svg" className={className} />
-    </a>
+    </StyledAnchor>
   </Link>
 );
 
