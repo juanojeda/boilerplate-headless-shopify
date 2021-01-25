@@ -6,10 +6,10 @@ import Nav from "./Nav.js";
 
 const Wrapper = styled.div``;
 
-const Header = () => {
+const Header = ({ className }) => {
   const Cart = dynamic(() => import("./Cart.js"), { ssr: false });
   return (
-    <Wrapper>
+    <Wrapper className={className}>
       <Logo />
       <Nav />
       <Cart />
