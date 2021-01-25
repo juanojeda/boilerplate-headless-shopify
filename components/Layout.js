@@ -1,16 +1,20 @@
 import styled from "styled-components";
-import { gridVisual } from "neat-components";
+import { gridColumn, gridContainer, gridVisual } from "neat-components";
 import Header from "./Header.js";
 
 const Wrapper = styled.div`
-  ${({ theme }) => gridVisual(theme)}
+  ${gridContainer()};
+`;
+
+const StyledHeader = styled(Header)`
+  ${({ theme }) => gridColumn(theme, 12)}
 `;
 
 const Layout = ({ children }) => {
   return (
     <Wrapper>
-      <Header />
-      <div>{children}</div>
+      <StyledHeader />
+      {children}
     </Wrapper>
   );
 };
