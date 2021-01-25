@@ -9,18 +9,22 @@ import FontsCDN from "../components/FontsCDN.js";
 
 import WithShopifyContext from "../hooks/withShopifyContext";
 import THEME from "../shared/ConstTheme";
-const App = ({ Component, pageProps, graphql }) => (
-  <GraphQLProvider graphql={graphql}>
-    <WithShopifyContext>
-      <FontsCDN fonts={FONTS} />
-      <GlobalStyles />
-      <ThemeProvider theme={THEME}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ThemeProvider>
-    </WithShopifyContext>
-  </GraphQLProvider>
-);
+import isClient from "../utils/isClient";
+const App = ({ Component, pageProps, graphql }) => {
+  const showGrid = isClient() ? localStorage.getItem("__showGrid") : false;
+  return (
+    <GraphQLProvider graphql={graphql}>
+      <WithShopifyContext>
+        <FontsCDN fonts={FONTS} />
+        <ThemeProvider theme={THEME}>
+          <GlobalStyles $showGrid={showGrid} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
+      </WithShopifyContext>
+    </GraphQLProvider>
+  );
+};
 
 export default withGraphQLApp(App);
