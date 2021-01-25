@@ -1,20 +1,28 @@
-import Link from "next/link";
 import React from "react";
+import styled from "styled-components";
+import Link from "next/link";
 import NAV_ITEMS from "../shared/ConstNavItems";
 
-const Nav = () => {
+const Wrapper = styled.div``;
+const NavList = styled.ul``;
+const NavItem = styled.li``;
+const Anchor = styled.a`
+  display: inline-block;
+`;
+
+const Nav = ({ className }) => {
   return (
-    <div>
-      <ul>
+    <Wrapper className={className}>
+      <NavList>
         {NAV_ITEMS.map((item) => (
-          <li key={item.route}>
+          <NavItem key={item.route}>
             <Link href={item.route}>
-              <a>{item.title}</a>
+              <Anchor>{item.title}</Anchor>
             </Link>
-          </li>
+          </NavItem>
         ))}
-      </ul>
-    </div>
+      </NavList>
+    </Wrapper>
   );
 };
 
