@@ -16,7 +16,7 @@ const Nav = ({ className }) => {
       <NavList>
         {NAV_ITEMS.map((item) => (
           <NavItem key={item.route}>
-            <Link href={item.route}>
+            <Link passHref href={item.route}>
               <Anchor>{item.title}</Anchor>
             </Link>
           </NavItem>

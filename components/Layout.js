@@ -7,7 +7,7 @@ const Wrapper = styled.div`
 `;
 
 const StyledHeader = styled(Header)`
-  ${({ theme }) => gridColumn(theme, 12)}
+  ${({ theme: { grid } }) => gridColumn(grid.md, 12)}
 `;
 
 const Layout = ({ children }) => {
