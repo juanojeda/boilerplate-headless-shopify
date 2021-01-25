@@ -12,11 +12,13 @@ const CartMini = ({ cart }) => {
   );
 };
 
-const Cart = () => {
+const Cart = ({ className }) => {
   const { cart, loading } = useContext(ShopifyContext);
 
   return cart && !loading ? (
-    <CartMini cart={cart}>Cart</CartMini>
+    <CartMini className={className} cart={cart}>
+      Cart
+    </CartMini>
   ) : (
     <div>Loading ...</div>
   );
