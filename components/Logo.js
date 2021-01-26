@@ -3,7 +3,7 @@ import Link from "next/link";
 import PropTypes from "prop-types";
 
 const StyledImg = styled.img`
-  width: 150px;
+  width: 100%;
 `;
 
 const StyledAnchor = styled.a`

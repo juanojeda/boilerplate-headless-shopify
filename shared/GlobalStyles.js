@@ -1,4 +1,3 @@
-import { gridMedia, gridVisual } from "neat-components";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
@@ -14,11 +13,6 @@ const GlobalStyles = createGlobalStyle`
     font-size: 1.6rem;
     margin: 0;
     padding: 0;
-    ${({ $showGrid, theme: { grid } }) => $showGrid && gridVisual(grid.sm)};
-    ${({ $showGrid, theme: { grid } }) =>
-      $showGrid && gridMedia(grid.md, gridVisual(grid.md))};
-    ${({ $showGrid, theme: { grid } }) =>
-      $showGrid && gridMedia(grid.lg, gridVisual(grid.lg))};
   }
 `;
 

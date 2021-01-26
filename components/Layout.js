@@ -1,14 +1,11 @@
-import styled from "styled-components";
-import { gridColumn, gridContainer, gridVisual } from "neat-components";
+import { useContext } from "react";
+import styled, { ThemeContext } from "styled-components";
+import useMedia from "../hooks/useMedia.js";
 import Header from "./Header.js";
 
-const Wrapper = styled.div`
-  ${gridContainer()};
-`;
+const Wrapper = styled.div``;
 
-const StyledHeader = styled(Header)`
-  ${({ theme: { grid } }) => gridColumn(grid.md, 12)}
-`;
+const StyledHeader = styled(Header)``;
 
 const Layout = ({ children }) => {
   return (
