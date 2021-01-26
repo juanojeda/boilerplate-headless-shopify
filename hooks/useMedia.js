@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ThemeContext } from "styled-components";
 import debounce from "../shared/debounce";
 import isClient from "../utils/isClient";
 
@@ -23,8 +24,11 @@ const getCurrentKey = (mqList) => {
  * @type  Breakpoint      { key: String, query: String }
  */
 
-const useMedia = (breakpoints) => {
+const useMedia = () => {
+  const { breakpoints } = useContext(ThemeContext);
   const [breakpoint, setBreakpoint] = useState(null);
+
+  const isMedia = (media) => breakpoint === media;
 
   useEffect(() => {
     if (!isClient()) return;
@@ -47,7 +51,7 @@ const useMedia = (breakpoints) => {
     };
   }, []);
 
-  return { breakpoint };
+  return { breakpoint, isMedia };
 };
 
 export default useMedia;
