@@ -1,4 +1,3 @@
-import Neat from "neat-components";
 import { ThemeProvider } from "styled-components";
 import { GraphQLProvider } from "graphql-react";
 import { withGraphQLApp } from "next-graphql-react";
@@ -9,15 +8,13 @@ import FontsCDN from "../components/FontsCDN.js";
 
 import WithShopifyContext from "../hooks/withShopifyContext";
 import THEME from "../shared/ConstTheme";
-import isClient from "../utils/isClient";
 const App = ({ Component, pageProps, graphql }) => {
-  const showGrid = isClient() ? localStorage.getItem("__showGrid") : false;
   return (
     <GraphQLProvider graphql={graphql}>
       <WithShopifyContext>
         <FontsCDN fonts={FONTS} />
         <ThemeProvider theme={THEME}>
-          <GlobalStyles $showGrid={showGrid} />
+          <GlobalStyles />
           <Layout>
             <Component {...pageProps} />
           </Layout>
