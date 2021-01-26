@@ -7,11 +7,24 @@ import MaxWidthContainer from "./MaxWidthContainer.js";
 
 const Wrapper = styled(MaxWidthContainer)``;
 
-const StyledLogo = styled(Logo)``;
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-areas: ${`
+    "${G_NAV} ${G_LOGO} ${G_CART}"
+  `};
+`;
 
-const StyledNav = styled(Nav)``;
+const StyledLogo = styled(Logo)`
+  grid-area: ${G_LOGO};
+`;
 
-const StyledCart = styled.div``;
+const StyledNav = styled(Nav)`
+  grid-area: ${G_NAV};
+`;
+
+const StyledCart = styled.div`
+  grid-area: ${G_CART};
+`;
 
 const Header = ({ className }) => {
   const Cart = dynamic(() => import("./Cart.js"), { ssr: false });

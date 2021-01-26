@@ -4,15 +4,19 @@ import Link from "next/link";
 import NAV_ITEMS from "../shared/ConstNavItems";
 import useMedia from "../hooks/useMedia";
 
+const Wrapper = styled.div``;
+
 const NavList = styled.ul`
   display: inline-block;
   margin: 0;
   padding: 0;
 `;
+
 const NavItem = styled.li`
   display: inline-block;
   padding-right: 2rem;
 `;
+
 const Anchor = styled.a`
   display: inline-block;
   padding-bottom: 2rem;
