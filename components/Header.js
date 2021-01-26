@@ -12,6 +12,8 @@ const Wrapper = styled.div`
   grid-template-areas: ${`
     "${G_NAV} ${G_LOGO} ${G_CART}"
   `};
+  grid-template-columns: 50px 100px 50px;
+  justify-content: space-between;
 `;
 
 const StyledLogo = styled(Logo)`
