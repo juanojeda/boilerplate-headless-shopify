@@ -4,6 +4,8 @@
   "license": "",
   "dependencies": {
     "@shopify/buy-button-js": "^2.1.7",
+    "@shopify/polaris": "^6.0.0",
+    "@shopify/polaris-icons": "^4.2.0",
     "graphql-react": "^11.0.1",
     "next": "^10.0.4",
     "next-graphql-react": "^8.0.0",
