@@ -46,7 +46,6 @@ const Header = ({ className }) => {
   const Cart = dynamic(() => import("./Cart.js"), { ssr: false });
   const theme = useContext(ThemeContext);
 
-  console.log(theme);
   return (
     <Wrapper className={className}>
       <StyledLogo />
