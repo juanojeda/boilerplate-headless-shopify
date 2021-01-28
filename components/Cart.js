@@ -2,9 +2,9 @@ import { useContext } from "react";
 import { ShopifyContext } from "../hooks/withShopifyContext";
 import { formatPrice } from "../utils/formatPrice";
 
-const CartMini = ({ cart }) => {
+const CartMini = ({ cart, className }) => {
   return (
-    <div>
+    <div className={className}>
       <div>Line items: {cart.lineItems.length}</div>
       <div>Line items subtotal: {formatPrice(cart.subtotalPriceV2)}</div>
       {!!cart.lineItems.length && <a href={cart.webUrl}>Go to checkout</a>}

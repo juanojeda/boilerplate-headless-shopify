@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "styled-components";
-import debounce from "../shared/debounce";
+import debounce from "../utils/debounce";
 import isClient from "../utils/isClient";
 
 const getMediaQueriesList = (breakpoints) =>
