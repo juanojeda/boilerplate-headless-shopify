@@ -8,20 +8,35 @@ const Wrapper = styled.div`
   justify-self: flex-end;
 `;
 
+const CartMiniWrapper = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+`;
+
 const CartIcon = styled(CheckoutMajor)`
   width: 4rem;
   padding: 1rem;
   fill: ${({ theme: { colors } }) => colors.neutral.light_80};
 `;
 
+const CartEmpty = () => <div>Your cart is empty</div>;
+
+const CartFull = ({ cart }) => (
+  <>
+    <div>{cart.lineItems.length}</div>
+    {/* <div>Line items subtotal: {formatPrice(cart.subtotalPriceV2)}</div> */}
+    {/* {!!cart.lineItems.length && <a href={cart.webUrl}>Go to checkout</a>} */}
+  </>
+);
+
 const CartMini = ({ cart, className }) => {
+  const hasItems = cart.lineItems.length > 0;
   return (
-    <div className={className}>
+    <CartMiniWrapper className={className}>
       <CartIcon />
-      <div>Line items: {cart.lineItems.length}</div>
-      <div>Line items subtotal: {formatPrice(cart.subtotalPriceV2)}</div>
-      {!!cart.lineItems.length && <a href={cart.webUrl}>Go to checkout</a>}
-    </div>
+      {hasItems ? <CartFull cart={cart} /> : <CartEmpty />}
+    </CartMiniWrapper>
   );
 };
 
