@@ -72,12 +72,11 @@ const BurgerNav = () => {
 
 const Nav = ({ className }) => {
   const { isMedia } = useMedia();
-  const isMobile = isMedia("SM");
-  console.log(isMobile);
+  const isDrawer = isMedia("md") || isMedia("sm");
 
   return (
     <Wrapper className={className}>
-      {isMobile ? <BurgerNav /> : <OpenNav />}
+      {isDrawer ? <BurgerNav /> : <OpenNav />}
     </Wrapper>
   );
 };

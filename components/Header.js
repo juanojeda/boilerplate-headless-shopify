@@ -5,9 +5,11 @@ import Logo from "./Logo.js";
 import Nav from "./Nav.js";
 import MaxWidthContainer from "./MaxWidthContainer.js";
 
-const Wrapper = styled(MaxWidthContainer)``;
+const G_LOGO = "logo";
+const G_NAV = "nav";
+const G_CART = "cart";
 
-const Wrapper = styled.div`
+const Wrapper = styled(MaxWidthContainer)`
   display: grid;
   grid-template-areas: ${`
     "${G_NAV} ${G_LOGO} ${G_CART}"
@@ -17,10 +19,18 @@ const Wrapper = styled.div`
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   padding-top: 1.5rem;
+
+  ${({ theme: { mediaQueries } }) => `${mediaQueries.lg}`} {
+    grid-template-columns: calc(50% - 100px) 100px calc(50% - 100px);
+    height: 100px;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
 `;
 
 const StyledLogo = styled(Logo)`
   grid-area: ${G_LOGO};
+  padding-bottom: 2rem;
 `;
 
 const StyledNav = styled(Nav)`
@@ -29,6 +39,7 @@ const StyledNav = styled(Nav)`
 
 const StyledCart = styled.div`
   grid-area: ${G_CART};
+  padding-bottom: 2rem;
 `;
 
 const Header = ({ className }) => {
