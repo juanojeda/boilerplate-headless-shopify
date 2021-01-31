@@ -3,23 +3,11 @@ import styled, { css } from "styled-components";
 import Link from "next/link";
 import NAV_ITEMS from "../shared/ConstNavItems";
 import useMedia from "../hooks/useMedia";
+import Drawer from "./Drawer";
 
 const Wrapper = styled.div``;
 
-const NavContainer = styled.div`
-  ${({ $isSideDrawer }) =>
-    $isSideDrawer &&
-    css`
-      background: white;
-      box-shadow: 0 0 0 50px rgba(0, 0, 0, 0.5);
-      left: 0;
-      padding: 1.5rem;
-      position: fixed;
-      top: 0;
-      width: calc(100vw - 4rem);
-      height: 100vh;
-    `}
-`;
+const NavContainer = styled.div``;
 
 const NavList = styled.ul`
   display: ${({ $isSideDrawer }) => ($isSideDrawer ? "block" : "inline-block")};
@@ -42,7 +30,11 @@ const Anchor = styled.a`
 
 const OpenNav = ({ isSideDrawer, onClose }) => {
   return (
-    <NavContainer $isSideDrawer={isSideDrawer}>
+    <NavContainer
+      as={isSideDrawer ? Drawer : "div"}
+      fromDirection="left"
+      isOpen={true}
+    >
       {isSideDrawer && <button onClick={onClose}>Close menu</button>}
       <NavList $isSideDrawer={isSideDrawer}>
         {NAV_ITEMS.map((item) => (

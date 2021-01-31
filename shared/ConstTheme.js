@@ -32,6 +32,8 @@ const composeColourSwatch = (
 });
 
 const colors = {
+  white: composeColourSwatch("#f3f3f2", { omitLight: true }),
+  black: composeColourSwatch("#0f1108", { omitDark: true }),
   primary: composeColourSwatch("#8C1C13"),
   secondary: composeColourSwatch("#DE9151"),
   background: composeColourSwatch("#f3f3f2", { omitLight: true }),
