@@ -15,7 +15,7 @@ const Drawer = styled.div`
   display: ${({ isOpen }) => (isOpen ? "block" : "none")};
   background: ${getColor("white")};
   box-shadow: ${({ theme: { colors } }) =>
-    `0 0 0 999px ${transparentize(0.2, colors.black.base)}`};
+    `0 0 0 2000px ${transparentize(0.2, colors.black.base)}`};
   height: 100vh;
   max-width: 40rem;
   padding: 1.5rem;
