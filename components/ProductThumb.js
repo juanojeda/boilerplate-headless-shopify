@@ -17,7 +17,6 @@ const ProductThumb = ({
   return (
     <div>
       <h3>{title}</h3>
-      <div>product id: {id}</div>
       <img src={images[0].originalSrc} alt={images[0].altText} height="200" />
       {!availableForSale && <div>sold out</div>}
       <div>stock: {totalInventory}</div>
