@@ -46,12 +46,8 @@ const CartFull = ({ cart }) => (
 const CartMini = ({ cart, className, toggleCart }) => {
   const hasItems = cart.lineItems.length > 0;
   return (
-    <CartMiniWrapper className={className}>
-      <CartIcon
-        icon={CheckoutMajor}
-        onClick={toggleCart}
-        $hasItems={hasItems}
-      />
+    <CartMiniWrapper onClick={toggleCart} className={className}>
+      <CartIcon icon={CheckoutMajor} $hasItems={hasItems} />
       {hasItems ? <CartFull cart={cart} /> : <CartEmpty />}
     </CartMiniWrapper>
   );
