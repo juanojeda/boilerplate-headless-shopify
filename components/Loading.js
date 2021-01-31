@@ -16,6 +16,7 @@ const slideInOut = keyframes`
 const Wrapper = styled.div`
   width: 6rem;
   margin: 0 auto;
+  padding: 4rem 2rem;
   position: relative;
 `;
 
