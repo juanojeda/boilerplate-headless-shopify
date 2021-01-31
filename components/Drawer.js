@@ -21,6 +21,7 @@ const Drawer = styled.div`
   position: fixed;
   top: 0;
   width: calc(100vw - 4rem);
+  z-index: 1;
 `;
 
 export default Drawer;

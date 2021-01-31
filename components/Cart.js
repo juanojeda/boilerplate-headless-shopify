@@ -3,8 +3,8 @@ import { useContext, useState } from "react";
 import { ShopifyContext } from "../hooks/withShopifyContext";
 import { CheckoutMajor } from "@shopify/polaris-icons";
 import { getColor } from "../utils/themeHelpers";
-import useMedia from "../hooks/useMedia";
 import CartDrawer from "./CartDrawer";
+import Icon from "./Icon";
 
 const Wrapper = styled.div`
   justify-self: flex-end;
@@ -16,11 +16,9 @@ const CartMiniWrapper = styled.div`
   align-items: center;
 `;
 
-const CartIcon = styled(CheckoutMajor)`
-  width: 4rem;
-  padding: 1rem;
-  fill: ${({ hasItems, ...theme }) =>
-    hasItems
+const CartIcon = styled(Icon)`
+  fill: ${({ $hasItems, ...theme }) =>
+    $hasItems
       ? getColor("neutral")(theme)
       : getColor("neutral", "light_80")(theme)};
 `;
@@ -50,7 +48,11 @@ const CartMini = ({ cart, className, toggleCart }) => {
   const hasItems = cart.lineItems.length > 0;
   return (
     <CartMiniWrapper className={className}>
-      <CartIcon onClick={toggleCart} hasItems={hasItems} />
+      <CartIcon
+        icon={CheckoutMajor}
+        onClick={toggleCart}
+        $hasItems={hasItems}
+      />
       {hasItems ? <CartFull cart={cart} /> : <CartEmpty />}
     </CartMiniWrapper>
   );

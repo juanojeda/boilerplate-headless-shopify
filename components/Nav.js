@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import Link from "next/link";
+import {
+  MobileCancelMajor,
+  MobileHamburgerMajor,
+} from "@shopify/polaris-icons";
 import NAV_ITEMS from "../shared/ConstNavItems";
 import useMedia from "../hooks/useMedia";
 import Drawer from "./Drawer";
+import Icon from "./Icon";
 
 const Wrapper = styled.div``;
 
@@ -35,7 +40,7 @@ const OpenNav = ({ isSideDrawer, onClose }) => {
       fromDirection="left"
       isOpen={true}
     >
-      {isSideDrawer && <button onClick={onClose}>Close menu</button>}
+      {isSideDrawer && <Icon icon={MobileCancelMajor} onClick={onClose} />}
       <NavList $isSideDrawer={isSideDrawer}>
         {NAV_ITEMS.map((item) => (
           <NavItem $isSideDrawer={isSideDrawer} key={item.route}>
@@ -56,7 +61,9 @@ const BurgerNav = () => {
 
   return (
     <>
-      <button onClick={handler}>Menu</button>
+      <Icon icon={MobileHamburgerMajor} onClick={handler}>
+        Menu
+      </Icon>
       {isOpen && <OpenNav isSideDrawer={true} onClose={closeHandler} />}
     </>
   );

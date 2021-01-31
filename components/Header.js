@@ -1,15 +1,17 @@
 import React, { useContext } from "react";
-import styled, { css, ThemeContext } from "styled-components";
+import styled, { ThemeContext } from "styled-components";
 import dynamic from "next/dynamic";
 import Logo from "./Logo.js";
 import Nav from "./Nav.js";
 import MaxWidthContainer from "./MaxWidthContainer.js";
+import HorizontalRule from "./HorizontalRule.js";
 
 const G_LOGO = "logo";
 const G_NAV = "nav";
 const G_CART = "cart";
 
 const Wrapper = styled(MaxWidthContainer)`
+  align-items: center;
   display: grid;
   grid-template-areas: ${`
     "${G_NAV} ${G_LOGO} ${G_CART}"
@@ -19,12 +21,11 @@ const Wrapper = styled(MaxWidthContainer)`
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   padding-top: 1.5rem;
+  ${HorizontalRule};
 
   ${({ theme: { mediaQueries } }) => `${mediaQueries.lg}`} {
     grid-template-columns: calc(50% - 100px) 100px calc(50% - 100px);
-    height: 100px;
     justify-content: space-between;
-    align-items: flex-end;
   }
 `;
 
