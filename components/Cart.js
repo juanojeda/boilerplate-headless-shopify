@@ -40,8 +40,6 @@ const CartEmpty = () => <div>(0)</div>;
 const CartFull = ({ cart }) => (
   <>
     <CartCount>{cart.lineItems.length}</CartCount>
-    {/* <div>Line items subtotal: {formatPrice(cart.subtotalPriceV2)}</div> */}
-    {/* {!!cart.lineItems.length && <a href={cart.webUrl}>Go to checkout</a>} */}
   </>
 );
 

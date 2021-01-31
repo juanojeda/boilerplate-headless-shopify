@@ -42,6 +42,7 @@ const OpenNav = ({ isSideDrawer, onClose }) => {
   return (
     <NavContainer
       as={isSideDrawer ? Drawer : "div"}
+      onClose={onClose}
       fromDirection="left"
       isOpen={true}
     >
