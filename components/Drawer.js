@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { transparentize } from "polished";
+import { getColor } from "../utils/themeHelpers";
 
 const fromLeft = css`
   left: 0;
@@ -12,7 +13,7 @@ const fromRight = css`
 const Drawer = styled.div`
   ${({ fromDirection }) => (fromDirection === "left" ? fromLeft : fromRight)};
   display: ${({ isOpen }) => (isOpen ? "block" : "none")};
-  background: white;
+  background: ${getColor("white")};
   box-shadow: ${({ theme: { colors } }) =>
     `0 0 0 999px ${transparentize(0.2, colors.black.base)}`};
   height: 100vh;

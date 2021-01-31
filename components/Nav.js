@@ -9,6 +9,7 @@ import NAV_ITEMS from "../shared/ConstNavItems";
 import useMedia from "../hooks/useMedia";
 import Drawer from "./Drawer";
 import Icon from "./Icon";
+import { getColor } from "../utils/themeHelpers";
 
 const Wrapper = styled.div``;
 
@@ -31,6 +32,10 @@ const Anchor = styled.a`
   padding-top: 2rem;
   text-decoration: none;
   text-transform: uppercase;
+  color: ${getColor("links")};
+  &:hover {
+    color: ${getColor("links", "light_40")};
+  }
 `;
 
 const OpenNav = ({ isSideDrawer, onClose }) => {

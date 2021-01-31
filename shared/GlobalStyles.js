@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { getColor } from "../utils/themeHelpers";
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -11,6 +12,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
+    background: ${getColor("white")};
     font-family: "Public Sans";
     font-weight: 400;
     font-size: 1.6rem;

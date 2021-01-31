@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { getColor } from "../utils/themeHelpers";
 
 const BaseIcon = styled.svg`
-  fill: ${({ theme: { colors } }) => colors.black.light_40};
+  fill: ${getColor("black", "light_40")};
   padding: 1rem;
   width: 4rem;
 `;

@@ -5,6 +5,7 @@ import { CheckoutMajor } from "@shopify/polaris-icons";
 import { getColor } from "../utils/themeHelpers";
 import CartDrawer from "./CartDrawer";
 import Icon from "./Icon";
+import Loading from "./Loading";
 
 const Wrapper = styled.div`
   justify-self: flex-end;
@@ -19,8 +20,8 @@ const CartMiniWrapper = styled.div`
 const CartIcon = styled(Icon)`
   fill: ${({ $hasItems, ...theme }) =>
     $hasItems
-      ? getColor("neutral")(theme)
-      : getColor("neutral", "light_80")(theme)};
+      ? getColor("neutral", "dark_20")(theme)
+      : getColor("neutral", "light_60")(theme)};
 `;
 
 const CartCount = styled.div`
@@ -78,7 +79,7 @@ const Cart = ({ className }) => {
           {cartOpen && <CartDrawer closeCart={handleCartClose} />}
         </>
       ) : (
-        <div>Loading ...</div>
+        <Loading />
       )}
     </Wrapper>
   );

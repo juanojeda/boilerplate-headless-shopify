@@ -1,9 +1,10 @@
 import { css } from "styled-components";
+import { getColor } from "../utils/themeHelpers";
 
 const HorizontalRule = css`
   position: relative;
   &::after {
-    background: ${({ theme: { colors } }) => colors.black.light_80};
+    background: ${getColor("black", "light_80")};
     bottom: 0;
     content: "";
     display: block;
