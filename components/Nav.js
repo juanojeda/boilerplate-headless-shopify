@@ -50,7 +50,7 @@ const OpenNav = ({ isSideDrawer, onClose }) => {
         {NAV_ITEMS.map((item) => (
           <NavItem $isSideDrawer={isSideDrawer} key={item.route}>
             <Link passHref href={item.route}>
-              <Anchor>{item.title}</Anchor>
+              <Anchor onClick={onClose}>{item.title}</Anchor>
             </Link>
           </NavItem>
         ))}

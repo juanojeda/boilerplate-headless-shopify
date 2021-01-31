@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import Loading from "../components/Loading";
 import { unwrapGqlEdges } from "../utils/unwrapGqlEdges";
 import useShopifyGql from "./useShopifyGql";
 
@@ -28,13 +29,7 @@ export const WithCatalogData = ({ catalogHandle, children }) => {
 
   return (
     <CatalogDataContext.Provider value={{ productData: catalogCollection }}>
-      {catalogCollection ? (
-        children
-      ) : loading ? (
-        <div>Loading...</div>
-      ) : (
-        <div>Error!</div>
-      )}
+      {catalogCollection ? children : loading ? <Loading /> : <div>Error!</div>}
     </CatalogDataContext.Provider>
   );
 };
