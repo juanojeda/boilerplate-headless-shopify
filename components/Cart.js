@@ -4,6 +4,7 @@ import { ShopifyContext } from "../hooks/withShopifyContext";
 import { formatPrice } from "../utils/formatPrice";
 import { CheckoutMajor } from "@shopify/polaris-icons";
 import { getColor } from "../utils/themeHelpers";
+import useMedia from "../hooks/useMedia";
 
 const Wrapper = styled.div`
   justify-self: flex-end;
@@ -35,7 +36,9 @@ const CartCount = styled.div`
   width: 2.5rem;
 `;
 
-const CartEmpty = () => <div>Your cart is empty</div>;
+const CartEmpty = ({ isCompact }) => (
+  <div>{isCompact ? "(0)" : "Your cart is empty"}</div>
+);
 
 const CartFull = ({ cart }) => (
   <>
@@ -45,22 +48,29 @@ const CartFull = ({ cart }) => (
   </>
 );
 
-const CartMini = ({ cart, className }) => {
+const CartMini = ({ cart, className, isCompact }) => {
   const hasItems = cart.lineItems.length > 0;
   return (
     <CartMiniWrapper className={className}>
       <CartIcon hasItems={hasItems} />
-      {hasItems ? <CartFull cart={cart} /> : <CartEmpty />}
+      {hasItems ? (
+        <CartFull cart={cart} />
+      ) : (
+        <CartEmpty isCompact={isCompact} />
+      )}
     </CartMiniWrapper>
   );
 };
 
 const Cart = ({ className }) => {
   const { cart, loading } = useContext(ShopifyContext);
+  const { isMedia } = useMedia();
+  const isCompact = isMedia("sm") || isMedia("md");
+
   return (
     <Wrapper classname={className}>
       {cart && !loading ? (
-        <CartMini className={className} cart={cart}>
+        <CartMini className={className} cart={cart} isCompact={isCompact}>
           Cart
         </CartMini>
       ) : (
