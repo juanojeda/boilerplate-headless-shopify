@@ -38,6 +38,7 @@ const Image = styled.img`
 `;
 
 const ImageGrid = ({ images }) => {
+  // preload images, show loading grid until preloaded
   return (
     <Wrapper>
       {images.map((img) => (
