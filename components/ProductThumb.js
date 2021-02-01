@@ -22,8 +22,8 @@ const ProductThumb = ({
 
   return (
     <Wrapper>
-      <h3>{title}</h3>
       <ImageGrid images={images} />
+      <h4>{title}</h4>
       {!availableForSale && <div>sold out</div>}
       <div>stock: {totalInventory}</div>
       <div>Price: {formatPrice(variant.priceV2)}</div>

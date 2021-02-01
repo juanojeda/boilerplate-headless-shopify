@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { getColor } from "../utils/themeHelpers";
 
 const G_MAIN_IMG = "mainImage";
 const G_THUMB_IMG_A = "thumbImageA";
@@ -19,6 +20,8 @@ const Wrapper = styled.div`
 const Image = styled.img`
   object-fit: contain;
   width: 100%;
+  height: 100%;
+  background: ${getColor("neutral", "light_80")};
 
   &:first-of-type {
     grid-area: ${G_MAIN_IMG};
@@ -35,11 +38,10 @@ const Image = styled.img`
 `;
 
 const ImageGrid = ({ images }) => {
-  console.log(images);
   return (
     <Wrapper>
       {images.map((img) => (
-        <Image key={img.id} src={img.originalSrc} alt={img.altText} />
+        <Image key={img.id} src={`${img.originalSrc}`} alt={img.altText} />
       ))}
     </Wrapper>
   );
