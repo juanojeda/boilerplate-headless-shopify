@@ -39,6 +39,8 @@ const Image = styled.img`
 
 const ImageGrid = ({ images }) => {
   // preload images, show loading grid until preloaded
+  // load smaller thumbs rather than full-size images
+
   return (
     <Wrapper>
       {images.map((img) => (
