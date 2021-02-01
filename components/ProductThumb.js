@@ -1,6 +1,12 @@
 import React, { useContext } from "react";
+import styled from "styled-components";
 import { ShopifyContext } from "../hooks/withShopifyContext";
 import { formatPrice } from "../utils/formatPrice";
+import ImageGrid from "./ImageGrid";
+
+const Wrapper = styled.div`
+  margin: 1rem 0;
+`;
 
 const ProductThumb = ({
   id,
@@ -15,14 +21,14 @@ const ProductThumb = ({
   const variant = variants[0];
 
   return (
-    <div>
+    <Wrapper>
       <h3>{title}</h3>
-      <img src={images[0].originalSrc} alt={images[0].altText} height="200" />
+      <ImageGrid images={images} />
       {!availableForSale && <div>sold out</div>}
       <div>stock: {totalInventory}</div>
       <div>Price: {formatPrice(variant.priceV2)}</div>
       <button onClick={onAddToCart}>Add to cart</button>
-    </div>
+    </Wrapper>
   );
 };
 

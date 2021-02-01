@@ -8,8 +8,9 @@ const getCssMediaQueries = (bpList) =>
   );
 
 const breakpoints = [
-  { key: "sm", query: composeMediaQuery(0) },
-  { key: "md", query: composeMediaQuery(600) },
+  { key: "xs", query: composeMediaQuery(0) },
+  { key: "sm", query: composeMediaQuery(480) },
+  { key: "md", query: composeMediaQuery(720) },
   { key: "lg", query: composeMediaQuery(950) },
 ];
 
@@ -33,6 +34,9 @@ const composeColourSwatch = (
 
 const colors = {
   white: composeColourSwatch("#f3f3f2", { omitLight: true }),
+  realWhite: {
+    base: "#fefefe",
+  },
   black: composeColourSwatch("#0f1108", { omitDark: true }),
   primary: composeColourSwatch("#8C1C13"),
   secondary: composeColourSwatch("#DE9151"),

@@ -5,6 +5,7 @@ import Logo from "./Logo.js";
 import Nav from "./Nav.js";
 import MaxWidthContainer from "./MaxWidthContainer.js";
 import HorizontalRule from "./HorizontalRule.js";
+import { getMedia } from "../utils/themeHelpers.js";
 
 const G_LOGO = "logo";
 const G_NAV = "nav";
@@ -23,7 +24,7 @@ const Wrapper = styled(MaxWidthContainer)`
   padding-top: 1.5rem;
   ${HorizontalRule};
 
-  ${({ theme: { mediaQueries } }) => `${mediaQueries.lg}`} {
+  ${getMedia("lg")} {
     grid-template-columns: calc(50% - 100px) 100px calc(50% - 100px);
     justify-content: space-between;
   }

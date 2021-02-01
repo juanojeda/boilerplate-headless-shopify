@@ -25,7 +25,7 @@ const catalogGQL = (handleToQuery) => ({
                   }
                 }
               }
-              images(first: 2) {
+              images(first: 4) {
                 edges {
                   node {
                     originalSrc
