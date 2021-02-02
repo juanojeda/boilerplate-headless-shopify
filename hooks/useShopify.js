@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useReducer } from "react";
 import ShopifyBuy from "shopify-buy";
 
+const LS_CART_ID = "shopify_checkout_id";
 const INIT_STATE = {
   loading: true,
   cart: null,
@@ -91,12 +92,32 @@ const useShopify = ({ domain, storefrontAccessToken }) => {
 
     dispatch.setLoading(true);
 
-    const createCart = async () => {
-      const cart = await client.checkout.create();
-      dispatch.newCart(cart);
+    const localCartId = localStorage.getItem(LS_CART_ID);
+
+    const initializeCart = async () => {
+      const setCartInState = (cart) => {
+        localStorage.setItem(LS_CART_ID, cart.id);
+        dispatch.newCart(cart);
+      };
+
+      if (localCartId) {
+        try {
+          const existingCart = await client.checkout.fetch(localCartId);
+          if (!existingCart.completedAt) {
+            setCartInState(existingCart);
+            return;
+          }
+        } catch (e) {
+          localStorage.setItem(LS_CART_ID, null);
+        }
+      }
+
+      const newCart = await client.checkout.create();
+
+      setCartInState(newCart);
     };
 
-    createCart();
+    initializeCart();
   }, [client, dispatch.newCart]);
 
   // fetch products
