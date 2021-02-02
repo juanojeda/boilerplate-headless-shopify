@@ -77,7 +77,7 @@ const BurgerNav = () => {
 
 const Nav = ({ className }) => {
   const { isMedia } = useMedia();
-  const isDrawer = isMedia("md") || isMedia("sm");
+  const isDrawer = isMedia("md") || isMedia("sm") || isMedia("xs");
 
   return (
     <Wrapper className={className}>
