@@ -28,7 +28,7 @@ const catalogGQL = (handleToQuery) => ({
               images(first: 4, maxHeight: 600, maxWidth: 600) {
                 edges {
                   node {
-                    originalSrc
+                    transformedSrc
                     altText
                     id
                   }

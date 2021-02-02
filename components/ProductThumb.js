@@ -8,6 +8,7 @@ import Title from "./Title";
 
 const Wrapper = styled.div`
   margin: 1rem 0;
+  position: relative;
 `;
 
 const Price = styled.div`
@@ -48,6 +49,29 @@ const AddToCartBtn = styled.button`
   }
 `;
 
+const SoldOutBadge = styled.div`
+  align-items: center;
+  background: ${getColor("black")};
+  border: 0.5px solid ${getColor("white")};
+  box-shadow: 0 0 0 0.3rem ${getColor("black")};
+  border-radius: 50%;
+  color: ${getColor("white")};
+  display: flex;
+  height: 6rem;
+  justify-content: center;
+  position: absolute;
+  padding: 1rem;
+  right: 1rem;
+  text-transform: uppercase;
+  top: 1rem;
+  width: 6rem;
+`;
+
+const BadgeText = styled.span`
+  font-size: 1.4rem;
+  text-align: center;
+`;
+
 const ProductThumb = ({ id, title, availableForSale, images, variants }) => {
   const { addItem } = useContext(ShopifyContext);
   const onAddToCart = () => addItem(variants[0].id);
@@ -57,7 +81,11 @@ const ProductThumb = ({ id, title, availableForSale, images, variants }) => {
     <Wrapper>
       <ImageGrid images={images} />
       <ProductTitle>{title}</ProductTitle>
-      {!availableForSale && <div>sold out</div>}
+      {!availableForSale && (
+        <SoldOutBadge>
+          <BadgeText>sold out</BadgeText>
+        </SoldOutBadge>
+      )}
       <Price>
         {formatPrice(variant.priceV2)} <Currency>aud</Currency>
       </Price>
