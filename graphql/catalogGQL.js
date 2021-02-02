@@ -31,6 +31,8 @@ const catalogGQL = (handleToQuery) => ({
                     transformedSrc
                     altText
                     id
+                    width
+                    height
                   }
                 }
               }

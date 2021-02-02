@@ -89,7 +89,9 @@ const ProductThumb = ({ id, title, availableForSale, images, variants }) => {
       <Price>
         {formatPrice(variant.priceV2)} <Currency>aud</Currency>
       </Price>
-      <AddToCartBtn onClick={onAddToCart}>Add to cart</AddToCartBtn>
+      {availableForSale && (
+        <AddToCartBtn onClick={onAddToCart}>Add to cart</AddToCartBtn>
+      )}
     </Wrapper>
   );
 };
