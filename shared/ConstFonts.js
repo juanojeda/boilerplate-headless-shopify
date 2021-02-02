@@ -1,7 +1,7 @@
 const FONTS = [
   {
     family: "Public Sans",
-    weights: ["400"],
+    weights: ["100", "300", "800"],
   },
 ];
 

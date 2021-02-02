@@ -2,20 +2,53 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { ShopifyContext } from "../hooks/withShopifyContext";
 import { formatPrice } from "../utils/formatPrice";
+import { getColor } from "../utils/themeHelpers";
 import ImageGrid from "./ImageGrid";
+import Title from "./Title";
 
 const Wrapper = styled.div`
   margin: 1rem 0;
 `;
 
-const ProductThumb = ({
-  id,
-  title,
-  availableForSale,
-  totalInventory,
-  images,
-  variants,
-}) => {
+const Price = styled.div`
+  font-size: 2rem;
+  font-weight: 200;
+  text-align: center;
+`;
+
+const Currency = styled.span`
+  font-size: 1.2rem;
+  font-weight: 300;
+  text-transform: uppercase;
+`;
+
+const ProductTitle = styled(Title).attrs({ level: "H4" })`
+  text-align: center;
+`;
+
+const AddToCartBtn = styled.button`
+  appearance: none;
+  background: none;
+  border: 0.5px solid ${getColor("primary")};
+  color: ${getColor("primary")};
+  cursor: pointer;
+  font-family: "Public Sans";
+  font-size: 2rem;
+  font-weight: 300;
+  margin: 2rem 0;
+  padding: 1rem;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in;
+  transition-property: background color;
+  width: 100%;
+
+  &:hover {
+    background: ${getColor("primary")};
+    color: ${getColor("white")};
+  }
+`;
+
+const ProductThumb = ({ id, title, availableForSale, images, variants }) => {
   const { addItem } = useContext(ShopifyContext);
   const onAddToCart = () => addItem(variants[0].id);
   const variant = variants[0];
@@ -23,11 +56,12 @@ const ProductThumb = ({
   return (
     <Wrapper>
       <ImageGrid images={images} />
-      <h4>{title}</h4>
+      <ProductTitle>{title}</ProductTitle>
       {!availableForSale && <div>sold out</div>}
-      <div>stock: {totalInventory}</div>
-      <div>Price: {formatPrice(variant.priceV2)}</div>
-      <button onClick={onAddToCart}>Add to cart</button>
+      <Price>
+        {formatPrice(variant.priceV2)} <Currency>aud</Currency>
+      </Price>
+      <AddToCartBtn onClick={onAddToCart}>Add to cart</AddToCartBtn>
     </Wrapper>
   );
 };
