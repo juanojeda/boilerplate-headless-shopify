@@ -144,6 +144,11 @@ const CartContent = () => {
   );
 };
 
+const CartTotals = () => {
+  const { cart, loading } = useContext(ShopifyContext);
+  return <div>Totals placeholder</div>;
+};
+
 const CartDrawer = ({ closeCart }) => {
   return (
     <Drawer isOpen fromDirection="right" onClose={closeCart}>
@@ -153,6 +158,7 @@ const CartDrawer = ({ closeCart }) => {
           <Title level="H2">Your cart</Title>
         </CartHeader>
         <CartContent />
+        <CartTotals />
       </CartWrapper>
     </Drawer>
   );
