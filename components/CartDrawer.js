@@ -15,6 +15,12 @@ const G_ITEM_TITLE = "itemTitle";
 const G_ITEM_PRICE = "itemPrice";
 const G_ITEM_REMOVE = "itemRemove";
 
+const CartWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+`;
+
 const CartHeader = styled.div`
   align-items: center;
   display: flex;
@@ -36,6 +42,7 @@ const CartContentWrapper = styled.div`
   height: 100%;
   justify-content: flex-start;
   padding: 1rem 0;
+  overflow: auto;
 `;
 
 const EmptyCart = styled.div`
@@ -140,11 +147,13 @@ const CartContent = () => {
 const CartDrawer = ({ closeCart }) => {
   return (
     <Drawer isOpen fromDirection="right" onClose={closeCart}>
-      <CartHeader>
-        <CloseIcon icon={MobileCancelMajor} onClick={closeCart} />
-        <Title level="H2">Your cart</Title>
-      </CartHeader>
-      <CartContent />
+      <CartWrapper>
+        <CartHeader>
+          <CloseIcon icon={MobileCancelMajor} onClick={closeCart} />
+          <Title level="H2">Your cart</Title>
+        </CartHeader>
+        <CartContent />
+      </CartWrapper>
     </Drawer>
   );
 };
