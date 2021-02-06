@@ -19,6 +19,10 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
+
+  input, button {
+    font-family: "Public Sans";
+  }
 `;
 
 export default GlobalStyles;

@@ -8,6 +8,7 @@ import ImageGrid from "./ImageGrid";
 import Icon from "./Icon";
 import Title from "./Title";
 import { transparentize } from "polished";
+import Button from "./Button";
 
 const Wrapper = styled.div`
   margin: 1rem 0;
@@ -28,28 +29,6 @@ const Currency = styled.span`
 
 const ProductTitle = styled(Title).attrs({ level: "H4" })`
   text-align: center;
-`;
-
-const AddToCartBtn = styled.button`
-  appearance: none;
-  background: none;
-  border: 0.5px solid ${getColor("primary")};
-  color: ${getColor("primary")};
-  cursor: pointer;
-  font-family: "Public Sans";
-  font-size: 2rem;
-  font-weight: 300;
-  margin: 1rem 0;
-  padding: 1rem;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in;
-  transition-property: background color;
-  width: 100%;
-
-  &:hover {
-    background: ${getColor("primary")};
-    color: ${getColor("white")};
-  }
 `;
 
 const SoldOutBadge = styled.div`
@@ -129,7 +108,9 @@ const ProductThumb = ({ id, title, availableForSale, images, variants }) => {
         </ViewDetailsOverlay>
       </OverlayWrapper>
       {availableForSale && (
-        <AddToCartBtn onClick={onAddToCart}>Add to cart</AddToCartBtn>
+        <Button variant="secondary" fullWidth onClick={onAddToCart}>
+          Add to cart
+        </Button>
       )}
     </Wrapper>
   );

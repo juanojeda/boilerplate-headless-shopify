@@ -9,21 +9,32 @@ import { useContext } from "react";
 import { ShopifyContext } from "../hooks/withShopifyContext";
 import { formatPrice } from "../utils/formatPrice";
 import { getColor } from "../utils/themeHelpers";
+import Button from "./Button";
 
 const G_ITEM_IMG = "itemImage";
 const G_ITEM_TITLE = "itemTitle";
 const G_ITEM_PRICE = "itemPrice";
 const G_ITEM_REMOVE = "itemRemove";
 
+const G_CART_HEADER = "cartHeader";
+const G_CART_BODY = "cartBody";
+const G_CART_FOOTER = "cartFooter";
+
 const CartWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  max-height: 100%;
+  display: grid;
+  grid-template-areas: ${`
+    "${G_CART_HEADER}"
+    "${G_CART_BODY}"
+    "${G_CART_FOOTER}"
+  `};
+  grid-template-rows: 5rem auto 10rem;
+  height: 100%;
 `;
 
 const CartHeader = styled.div`
   align-items: center;
   display: flex;
+  grid-area: ${G_CART_HEADER};
   justify-content: space-between;
   padding-bottom: 1rem;
   position: relative;
@@ -31,18 +42,23 @@ const CartHeader = styled.div`
   ${HorizontalRule};
 `;
 
-const CloseIcon = styled(Icon)`
-  order: 2;
-`;
-
 const CartContentWrapper = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
+  grid-area: ${G_CART_BODY};
   height: 100%;
   justify-content: flex-start;
-  padding: 1rem 0;
   overflow: auto;
+  padding: 1rem 0;
+`;
+
+const CartFooterWrapper = styled.div`
+  grid-area: ${G_CART_FOOTER};
+`;
+
+const CloseIcon = styled(Icon)`
+  order: 2;
 `;
 
 const EmptyCart = styled.div`
@@ -144,9 +160,16 @@ const CartContent = () => {
   );
 };
 
-const CartTotals = () => {
+const CartFooter = () => {
   const { cart, loading } = useContext(ShopifyContext);
-  return <div>Totals placeholder</div>;
+  return (
+    <CartFooterWrapper>
+      Totals placeholder
+      <Button fullWidth variant="primary">
+        Go to checkout
+      </Button>
+    </CartFooterWrapper>
+  );
 };
 
 const CartDrawer = ({ closeCart }) => {
@@ -155,10 +178,10 @@ const CartDrawer = ({ closeCart }) => {
       <CartWrapper>
         <CartHeader>
           <CloseIcon icon={MobileCancelMajor} onClick={closeCart} />
-          <Title level="H2">Your cart</Title>
+          <Title level="H4">Your cart</Title>
         </CartHeader>
         <CartContent />
-        <CartTotals />
+        <CartFooter />
       </CartWrapper>
     </Drawer>
   );
