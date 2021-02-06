@@ -165,7 +165,7 @@ const CartFooter = () => {
   return (
     <CartFooterWrapper>
       Totals placeholder
-      <Button fullWidth variant="primary">
+      <Button fullWidth variant="primary" href="" asLink>
         Go to checkout
       </Button>
     </CartFooterWrapper>
