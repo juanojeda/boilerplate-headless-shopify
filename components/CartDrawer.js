@@ -27,7 +27,7 @@ const CartWrapper = styled.div`
     "${G_CART_BODY}"
     "${G_CART_FOOTER}"
   `};
-  grid-template-rows: 5rem auto 10rem;
+  grid-template-rows: 5rem auto 1fr;
   height: 100%;
 `;
 
@@ -50,11 +50,28 @@ const CartContentWrapper = styled.div`
   height: 100%;
   justify-content: flex-start;
   overflow: auto;
-  padding: 1rem 0;
+  padding: 1rem 0 2rem;
 `;
 
 const CartFooterWrapper = styled.div`
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: column;
   grid-area: ${G_CART_FOOTER};
+  padding-top: 1rem;
+  text-align: right;
+`;
+
+const SubtotalTitle = styled(Title)`
+  padding-right: 1rem;
+`;
+const SubtotalPrice = styled.p`
+  padding-right: 1rem;
+  margin: 0.5rem 0;
+`;
+const SubtotalNote = styled.p`
+  padding-right: 1rem;
+  margin: 0.5rem 0%;
 `;
 
 const CloseIcon = styled(Icon)`
@@ -164,8 +181,18 @@ const CartFooter = () => {
   const { cart, loading } = useContext(ShopifyContext);
   return (
     <CartFooterWrapper>
-      Totals placeholder
-      <Button fullWidth variant="primary" href="" asLink>
+      <SubtotalTitle asElement="p" level="H5">
+        Subtotal
+      </SubtotalTitle>
+      <SubtotalPrice>{formatPrice(cart.subtotalPriceV2)}</SubtotalPrice>
+      <SubtotalNote>(Shipping calculated at checkout)</SubtotalNote>
+      <Button
+        fullWidth
+        variant="primary"
+        href=""
+        asLink
+        disabled={cart.lineItems.length < 1}
+      >
         Go to checkout
       </Button>
     </CartFooterWrapper>

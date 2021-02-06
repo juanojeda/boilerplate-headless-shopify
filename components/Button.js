@@ -4,6 +4,7 @@ import { getColor } from "../utils/themeHelpers";
 
 const ButtonBase = styled.div`
   appearance: none;
+  border: 0.5px solid transparent;
   cursor: pointer;
   font-size: 2rem;
   margin: 1rem 0;
@@ -23,7 +24,6 @@ const ButtonBase = styled.div`
 `;
 
 const Primary = styled(ButtonBase)`
-  border: none;
   background: ${getColor("primary")};
   color: ${getColor("white")};
 
@@ -32,11 +32,26 @@ const Primary = styled(ButtonBase)`
     border: 0.5px solid ${getColor("primary")};
     color: ${getColor("primary")};
   }
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      background: ${getColor("neutral", "light_40")};
+      border-color: transparent;
+      color: ${getColor("white")};
+      cursor: not-allowed;
+
+      &:hover {
+        background: ${getColor("neutral", "light_40")};
+        border-color: transparent;
+        color: ${getColor("white")};
+      }
+    `};
 `;
 
 const Secondary = styled(ButtonBase)`
   background: none;
-  border: 0.5px solid ${getColor("primary")};
+  border-color: ${getColor("primary")};
   color: ${getColor("primary")};
   &:hover {
     background: ${getColor("primary")};
@@ -57,10 +72,12 @@ const Button = ({
   href,
   variant,
   children,
+  disabled,
 }) => {
   const RenderButton = variants[variant];
   return (
     <RenderButton
+      disabled={disabled}
       as={asLink ? "a" : "button"}
       fullWidth={fullWidth}
       className={className}
