@@ -27,7 +27,6 @@ const StyledDrawer = styled.div`
 `;
 
 const Drawer = ({ children, onClose, ...props }) => {
-  // console.log(props);
   const drawerEl = useRef(null);
   useEffect(() => {
     const closeHandler = ({ target }) => {

@@ -11,15 +11,15 @@ import THEME from "../shared/ConstTheme";
 const App = ({ Component, pageProps, graphql }) => {
   return (
     <GraphQLProvider graphql={graphql}>
-      <WithShopifyContext>
-        <FontsCDN fonts={FONTS} />
-        <ThemeProvider theme={THEME}>
-          <GlobalStyles />
+      <FontsCDN fonts={FONTS} />
+      <ThemeProvider theme={THEME}>
+        <GlobalStyles />
+        <WithShopifyContext>
           <Layout>
             <Component {...pageProps} />
           </Layout>
-        </ThemeProvider>
-      </WithShopifyContext>
+        </WithShopifyContext>
+      </ThemeProvider>
     </GraphQLProvider>
   );
 };

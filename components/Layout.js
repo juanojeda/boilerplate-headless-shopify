@@ -1,6 +1,4 @@
-import { useContext } from "react";
-import styled, { ThemeContext } from "styled-components";
-import useMedia from "../hooks/useMedia.js";
+import styled from "styled-components";
 import Header from "./Header.js";
 
 const Wrapper = styled.div``;

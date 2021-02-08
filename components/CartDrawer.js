@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Drawer from "./Drawer";
@@ -5,11 +6,11 @@ import { MobileCancelMajor } from "@shopify/polaris-icons";
 import Title from "./Title";
 import HorizontalRule from "./HorizontalRule";
 import Icon from "./Icon";
-import { useContext } from "react";
 import { ShopifyContext } from "../hooks/withShopifyContext";
 import { formatPrice } from "../utils/formatPrice";
 import Button from "./Button";
 import CartLineItem from "./CartLineItem";
+import Loading from "./Loading";
 
 const G_CART_HEADER = "cartHeader";
 const G_CART_BODY = "cartBody";
@@ -123,7 +124,7 @@ const CartFooter = () => {
       <Button
         fullWidth
         variant="primary"
-        href=""
+        href={cart.webUrl}
         asLink
         disabled={cart.lineItems.length < 1}
       >

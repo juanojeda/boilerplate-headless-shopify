@@ -3,6 +3,8 @@ import { DeleteMajor } from "@shopify/polaris-icons";
 import { getColor } from "../utils/themeHelpers";
 import { formatPrice } from "../utils/formatPrice";
 import Icon from "./Icon";
+import { ShopifyContext } from "../hooks/withShopifyContext";
+import { useContext } from "react";
 
 const G_ITEM_IMG = "itemImage";
 const G_ITEM_TITLE = "itemTitle";
@@ -58,15 +60,22 @@ const StyledRemoveIcon = styled(Icon)`
     fill: ${getColor("primary")};
   }
 `;
-const CartLineItem = ({ item }) => (
-  <LineItem>
-    <ItemImage src={item.variant.image.src} />
-    <ItemTitle>{item.title}</ItemTitle>
-    <ItemPrice>{formatPrice(item.variant.priceV2)}</ItemPrice>
-    <ItemRemove>
-      <StyledRemoveIcon icon={DeleteMajor} />
-    </ItemRemove>
-  </LineItem>
-);
+const CartLineItem = ({ item: { id, variant, title } }) => {
+  const { removeItem } = useContext(ShopifyContext);
+  const handleRemoveItem = (e) => {
+    e.stopPropagation();
+    removeItem(id);
+  };
+  return (
+    <LineItem>
+      <ItemImage src={variant.image.src} />
+      <ItemTitle>{title}</ItemTitle>
+      <ItemPrice>{formatPrice(variant.priceV2)}</ItemPrice>
+      <ItemRemove onClick={handleRemoveItem}>
+        <StyledRemoveIcon icon={DeleteMajor} />
+      </ItemRemove>
+    </LineItem>
+  );
+};
 
 export default CartLineItem;

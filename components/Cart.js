@@ -1,5 +1,5 @@
+import { memo, useContext } from "react";
 import styled from "styled-components";
-import { useContext, useState } from "react";
 import { ShopifyContext } from "../hooks/withShopifyContext";
 import { CheckoutMajor } from "@shopify/polaris-icons";
 import { getColor } from "../utils/themeHelpers";
@@ -54,10 +54,16 @@ const CartMini = ({ cart, className, toggleCart }) => {
 };
 
 const Cart = ({ className }) => {
-  const { cart, loading } = useContext(ShopifyContext);
-  const [cartOpen, setCartOpen] = useState(false);
-  const handleCartToggle = () => setCartOpen(!cartOpen);
-  const handleCartClose = () => setCartOpen(false);
+  const { cart, loading, setCartOpen, cartOpen } = useContext(ShopifyContext);
+
+  const handleCartToggle = () => {
+    console.log("TOGGLING");
+    setCartOpen(!cartOpen);
+  };
+  const handleCartClose = () => {
+    console.log("CLOSING");
+    setCartOpen(false);
+  };
 
   return (
     <Wrapper classname={className}>
@@ -70,13 +76,13 @@ const Cart = ({ className }) => {
           >
             Cart
           </CartMini>
-          {cartOpen && <CartDrawer closeCart={handleCartClose} />}
         </>
       ) : (
         <Loading />
       )}
+      {cartOpen && <CartDrawer closeCart={handleCartClose} />}
     </Wrapper>
   );
 };
 
-export default Cart;
+export default memo(Cart);

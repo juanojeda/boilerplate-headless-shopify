@@ -8,6 +8,7 @@ const INIT_STATE = {
   client: null,
   products: null,
   collections: null,
+  cartOpen: false,
 };
 
 const ACTIONS = {
@@ -16,6 +17,7 @@ const ACTIONS = {
   NEW_CART: "NEW_CART",
   SET_PRODUCTS: "SET_PRODUCTS",
   SET_COLLECTIONS: "SET_COLLECTIONS",
+  SET_CART_OPEN: "SET_CART_OPEN",
 };
 
 const reducer = (state, action) => {
@@ -49,6 +51,11 @@ const reducer = (state, action) => {
         collections: action.payload,
         loading: false,
       };
+    case ACTIONS.SET_CART_OPEN:
+      return {
+        ...state,
+        cartOpen: action.payload,
+      };
     default:
       return state;
   }
@@ -58,7 +65,7 @@ const getGenericDispatchersFromActions = (actions, dispatcher) =>
   Object.values(actions).reduce((acc, currAction) => {
     const actionKey = currAction
       .toLowerCase()
-      .replace(/(_)([a-z])/, (match) => match.toUpperCase().replace("_", ""));
+      .replace(/(_)([a-z])/g, (match) => match.toUpperCase().replace(/_/g, ""));
     return {
       ...acc,
       [actionKey]: useCallback(
@@ -70,7 +77,7 @@ const getGenericDispatchersFromActions = (actions, dispatcher) =>
 
 const useShopify = ({ domain, storefrontAccessToken }) => {
   const [
-    { cart, client, loading, products, collections },
+    { cart, cartOpen, client, loading, products, collections },
     shopifyDispatch,
   ] = useReducer(reducer, INIT_STATE);
 
@@ -150,15 +157,32 @@ const useShopify = ({ domain, storefrontAccessToken }) => {
     fetchAllCollections();
   }, [client, dispatch.setCollections]);
 
-  const addItem = async (productId) => {
-    dispatch.setLoading(true);
-    const newCheckout = await client.checkout.addLineItems(cart.id, {
-      quantity: 1,
-      variantId: productId,
-    });
+  const addItem = useCallback(
+    async (productId) => {
+      dispatch.setLoading(true);
+      const newCheckout = await client.checkout.addLineItems(cart.id, [
+        {
+          quantity: 1,
+          variantId: productId,
+        },
+      ]);
 
-    dispatch.newCart(newCheckout);
-  };
+      dispatch.newCart(newCheckout);
+    },
+    [dispatch, client]
+  );
+
+  const removeItem = useCallback(
+    async (productId) => {
+      dispatch.setLoading(true);
+      const newCheckout = await client.checkout.removeLineItems(cart.id, [
+        productId,
+      ]);
+
+      dispatch.newCart(newCheckout);
+    },
+    [dispatch, client]
+  );
 
   const getCollectionByHandle = useCallback(
     (handleToGet) =>
@@ -171,10 +195,13 @@ const useShopify = ({ domain, storefrontAccessToken }) => {
   return {
     client,
     cart,
+    cartOpen,
+    setCartOpen: dispatch.setCartOpen,
     loading,
     products,
     collections,
     addItem,
+    removeItem,
     getCollectionByHandle,
   };
 };
