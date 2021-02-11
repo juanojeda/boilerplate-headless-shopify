@@ -1,39 +1,36 @@
-import Catalog from "../components/Catalog";
+import { gql } from "graphql-request";
 
-const catalogGQL = (handleToQuery) => ({
-  query: /* GraphQL */ `
-    {
-      collectionByHandle(handle: "${handleToQuery}") {
-        id
-        handle
-        title
-        products(first: 50) {
-          edges {
-            node {
-              id
-              title
-              availableForSale
-              totalInventory
-              variants(first: 1) {
-                edges {
-                  node {
-                    id
-                    priceV2 {
-                      amount
-                      currencyCode
-                    }
+const catalogGQL = gql`
+  query getCollection($handle: String!) {
+    collectionByHandle(handle: $handle) {
+      id
+      handle
+      title
+      products(first: 50) {
+        edges {
+          node {
+            id
+            title
+            availableForSale
+            variants(first: 1) {
+              edges {
+                node {
+                  id
+                  priceV2 {
+                    amount
+                    currencyCode
                   }
                 }
               }
-              images(first: 4, maxHeight: 600, maxWidth: 600) {
-                edges {
-                  node {
-                    transformedSrc
-                    altText
-                    id
-                    width
-                    height
-                  }
+            }
+            images(first: 4) {
+              edges {
+                node {
+                  transformedSrc(scale: 2, maxHeight: 300, maxWidth: 300)
+                  altText
+                  id
+                  width
+                  height
                 }
               }
             }
@@ -41,7 +38,7 @@ const catalogGQL = (handleToQuery) => ({
         }
       }
     }
-  `,
-});
+  }
+`;
 
 export default catalogGQL;

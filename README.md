@@ -4,8 +4,6 @@ This is a storefront built on React and NextJS, using the Shopify Buy SDK and th
 
 The store is built for HG Blades.
 
-Based on the [Next.js example with `graphql-react`](https://github.com/vercel/next.js/tree/canary/examples/with-graphql-react)
-
 
 ## Toolkit
 - [React](reactjs.org/)

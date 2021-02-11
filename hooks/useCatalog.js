@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import { unwrapGqlEdges } from "../utils/unwrapGqlEdges";
 import useShopifyGql from "./useShopifyGql";
+import catalogGQL from "../graphql/catalogGQL";
 
 const CatalogDataContext = createContext(null);
 
@@ -18,7 +19,9 @@ export const useCatalogData = () => {
 };
 
 export const WithCatalogData = ({ catalogHandle, children }) => {
-  const { loading, cacheValue: { data } = {} } = useShopifyGql(catalogHandle);
+  const { loading, data } = useShopifyGql(catalogGQL, {
+    handle: catalogHandle,
+  });
   const [catalogCollection, setCatalogCollection] = useState(null);
 
   useEffect(() => {
