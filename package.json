@@ -19,11 +19,11 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "preview-dev": "npm run build && netlify dev -t",
+    "preview-dev": "npm run build && netlify dev",
     "postbuild": "next-on-netlify"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.12.0",
-    "netlify-cli": "^3.4.2"
+    "netlify-cli": "^3.7.1"
   }
 }
