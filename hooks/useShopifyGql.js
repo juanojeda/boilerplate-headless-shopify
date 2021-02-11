@@ -8,9 +8,9 @@ const HEADERS = {
   "Content-Type": "application/json",
 };
 
-export async function fetchShopifyGQLAsync(operation, variables) {
-  const client = new GraphQLClient(URL);
-  return client.request(operation, variables, HEADERS);
+export async function fetchShopifyGQLAsync(operation, variables = undefined) {
+  const client = new GraphQLClient(URL, { headers: HEADERS });
+  return client.request(operation, variables);
 }
 
 const useShopifyGql = (operation, variables) => {
