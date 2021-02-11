@@ -1,0 +1,10 @@
+{"timestamp":"Feb 11 15:58:21.514","level":"INFO","fields":{"message":"edge handlers directory does not exist","directory":"edge-handlers"},"target":"traffic_mesh::bundle"}
+{"timestamp":"Feb 11 15:58:21.518","level":"INFO","fields":{"message":"starting watcher","dir":"/Users/juan.ojeda/dev/sandbox/boilerplate-headless-shopify"},"target":"traffic_mesh::watch"}
+{"timestamp":"Feb 11 15:58:21.523","level":"INFO","fields":{"message":"server initialized","address":"0.0.0.0:8888"},"target":"traffic_mesh::server"}
+{"timestamp":"Feb 11 15:58:22.963","level":"INFO","fields":{"message":"mapped remap found","request":"scheme: http, host: localhost, path: /, query: , fragment: ","remap":"type: Rewrite, status: 200, scheme: http, host: localhost, path: .netlify/functions/next_index, query: , fragment: "},"target":"traffic_mesh"}
+{"timestamp":"Feb 11 15:58:23.114","level":"WARN","fields":{"message":""},"target":"traffic_mesh::middleware::proxy"}
+{"timestamp":"Feb 11 15:58:23.118","level":"WARN","fields":{"message":"Failed to connect to host: Internal error: connector has been disconnected"},"target":"traffic_mesh::middleware::proxy"}
+{"timestamp":"Feb 11 15:58:23.119","level":"WARN","fields":{"message":".htm"},"target":"traffic_mesh::middleware::proxy"}
+{"timestamp":"Feb 11 15:58:23.120","level":"WARN","fields":{"message":"/index.html"},"target":"traffic_mesh::middleware::proxy"}
+{"timestamp":"Feb 11 15:58:23.121","level":"WARN","fields":{"message":"/index.htm"},"target":"traffic_mesh::middleware::proxy"}
+{"timestamp":"Feb 11 16:13:46.751","level":"INFO","fields":{"message":"server shutting down","with_err":false},"target":"traffic_mesh::server"}

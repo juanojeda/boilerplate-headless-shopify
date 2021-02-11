@@ -19,3 +19,4 @@ Based on the [Next.js example with `graphql-react`](https://github.com/vercel/ne
 - `yarn dev` will run the application locally, spinning up a local dev server
 - `yarn build` will export the project for deployment, based on the environment variable
 - `yarn start` will serve the files exported by `yarn build`
+- `yarn preview-dev` will run a build and then run `netlify dev`, to preview the app as it would run on Netlify environment.
