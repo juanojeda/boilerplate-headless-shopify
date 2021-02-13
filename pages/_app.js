@@ -6,7 +6,7 @@ import FontsCDN from "../components/FontsCDN.js";
 
 import WithShopifyContext from "../hooks/withShopifyContext";
 import THEME from "../shared/ConstTheme";
-const App = ({ Component, ...pageProps }) => {
+const App = ({ Component, pageProps }) => {
   return (
     <>
       <FontsCDN fonts={FONTS} />
