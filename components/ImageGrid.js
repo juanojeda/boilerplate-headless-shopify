@@ -1,12 +1,37 @@
 import React, { useEffect, useState } from "react";
 import styled, { css, keyframes } from "styled-components";
+import usePreloader from "../hooks/usePreloader";
 import { getColor } from "../utils/themeHelpers";
-import isClient from "../utils/isClient";
+import Image from "./Image";
+
+const isMosaic = ({ $layout }) => $layout === "mosaic";
+const isRow = ({ $layout }) => $layout === "row";
 
 const G_MAIN_IMG = "mainImage";
-const G_THUMB_IMG_A = "thumbImageA";
-const G_THUMB_IMG_B = "thumbImageB";
-const G_THUMB_IMG_C = "thumbImageC";
+const G_FIRST_IMG = "thumbImage0";
+const G_THUMB_IMG_1 = "thumbImage1";
+const G_THUMB_IMG_2 = "thumbImage2";
+const G_THUMB_IMG_3 = "thumbImage3";
+
+const GRID_TEMPLATE_MOSAIC = css`
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "${G_MAIN_IMG} ${G_MAIN_IMG} ${G_MAIN_IMG}"
+    "${G_THUMB_IMG_1} ${G_THUMB_IMG_2} ${G_THUMB_IMG_3}";
+`;
+
+const GRID_TEMPLATE_ROW = css`
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas: "${G_FIRST_IMG} ${G_THUMB_IMG_1} ${G_THUMB_IMG_2} ${G_THUMB_IMG_3}";
+`;
+
+const GRID_FIRST_IMAGE_AREA_MOSAIC = css`
+  grid-area: ${G_MAIN_IMG};
+`;
+
+const GRID_FIRST_IMAGE_AREA_ROW = css`
+  grid-area: ${G_FIRST_IMG};
+`;
 
 const pulseAnimation = (props) => keyframes`
   0% {
@@ -23,82 +48,46 @@ const pulseAnimation = (props) => keyframes`
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-areas:
-    "${G_MAIN_IMG} ${G_MAIN_IMG} ${G_MAIN_IMG}"
-    "${G_THUMB_IMG_A} ${G_THUMB_IMG_B} ${G_THUMB_IMG_C}";
-  grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 1rem;
   grid-row-gap: 1rem;
   width: 100%;
+  ${(props) => isMosaic(props) && GRID_TEMPLATE_MOSAIC};
+  ${(props) => isRow(props) && GRID_TEMPLATE_ROW};
 `;
-const Image = styled.img`
-  object-fit: contain;
-  width: 100%;
-  height: 100%;
 
-  ${({ loaded }) =>
-    !loaded &&
-    css`
-      padding-bottom: 100%;
-      animation-duration: 1.5s;
-      animation-timing-function: ease-in;
-      animation-direction: alternate;
-      -moz-animation-iteration-count: infinite;
-      -moz-animation-name: ${(props) => pulseAnimation(props)};
-    `}
-
+const StyledImage = styled(Image)`
   &:first-of-type {
-    grid-area: ${G_MAIN_IMG};
+    ${(props) => isRow(props) && GRID_FIRST_IMAGE_AREA_ROW};
+    ${(props) => isMosaic(props) && GRID_FIRST_IMAGE_AREA_MOSAIC};
   }
   &:nth-of-type(2) {
-    grid-area: ${G_THUMB_IMG_A};
+    grid-area: ${G_THUMB_IMG_1};
   }
   &:nth-of-type(3) {
-    grid-area: ${G_THUMB_IMG_B};
+    grid-area: ${G_THUMB_IMG_2};
   }
   &:nth-of-type(4) {
-    grid-area: ${G_THUMB_IMG_C};
+    grid-area: ${G_THUMB_IMG_3};
   }
 `;
 
-const preloader = async (images, setter) => {
-  await Promise.all(
-    images.map(
-      (img) =>
-        new Promise((resolve) => {
-          const pre = document.createElement("img");
-          pre.onload = resolve;
-          pre.src = img.transformedSrc;
-        })
-    )
-  );
-
-  setter();
-};
-
-const ImageGrid = ({ images }) => {
+const ImageGrid = ({ images, className, layout, onImageClick }) => {
   // preload images, show loading grid until preloaded
   // load smaller thumbs rather than full-size images
 
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    if (!isClient()) return;
-
-    preloader(images, () => setLoaded(true));
-  }, [preloader]);
+  const isLoaded = usePreloader(images);
+  const onClickHandler = (id) => () => onImageClick(id);
 
   return (
-    <Wrapper>
-      {images.map(({ id, transformedSrc, width, height, altText }) => (
-        <Image
-          loaded={loaded}
-          as={loaded ? "img" : "div"}
+    <Wrapper className={className} $layout={layout}>
+      {images.map(({ id, transformedSrc, altText }) => (
+        <StyledImage
+          loaded={isLoaded}
           key={id}
           src={`${transformedSrc}`}
-          width={width}
-          height={height}
           alt={altText}
+          $layout={layout}
+          onClick={onImageClick && onClickHandler(id)}
         />
       ))}
     </Wrapper>
