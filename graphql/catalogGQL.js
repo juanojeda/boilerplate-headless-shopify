@@ -10,6 +10,7 @@ const catalogGQL = gql`
         edges {
           node {
             id
+            handle
             title
             availableForSale
             variants(first: 1) {
