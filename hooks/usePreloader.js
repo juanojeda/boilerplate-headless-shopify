@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import isClient from "../utils/isClient";
 
-const preloader = async (images, setter) => {
-  await Promise.all(
+const preloader = async (images) => {
+  return Promise.all(
     images.map(
       (img) =>
         new Promise((resolve) => {
@@ -12,16 +12,23 @@ const preloader = async (images, setter) => {
         })
     )
   );
-
-  setter();
 };
 
 const usePreloader = (images) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  let canSetLoaded = true;
   useEffect(() => {
     if (!isClient()) return;
 
-    preloader(images, () => setIsLoaded(true));
+    preloader(images).then(() => {
+      if (canSetLoaded) {
+        setIsLoaded(true);
+      }
+    });
+
+    return () => {
+      canSetLoaded = false;
+    };
   }, [preloader]);
 
   return isLoaded;

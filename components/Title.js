@@ -10,7 +10,7 @@ const H1 = styled(BaseTitle).attrs(({ asElement }) => ({
   as: asElement || "h1",
 }))`
   font-size: 3.5rem;
-  margin-top: 1.75rem 0;
+  margin-top: 1.75rem;
 `;
 const H2 = styled(BaseTitle).attrs(({ asElement }) => ({
   as: asElement || "h2",

@@ -33,19 +33,6 @@ const GRID_FIRST_IMAGE_AREA_ROW = css`
   grid-area: ${G_FIRST_IMG};
 `;
 
-const pulseAnimation = (props) => keyframes`
-  0% {
-    
-    background: ${getColor("neutral", "light_60")(props)};
-  }
-  70% {
-    background: ${getColor("neutral", "light_80")(props)};
-  }
-  100% {
-    background: ${getColor("neutral", "light_80")(props)};
-  }
-`;
-
 const Wrapper = styled.div`
   display: grid;
   grid-column-gap: 1rem;
@@ -71,7 +58,13 @@ const StyledImage = styled(Image)`
   }
 `;
 
-const ImageGrid = ({ images, className, layout, onImageClick }) => {
+const ImageGrid = ({
+  overridedLoaded = false,
+  images,
+  className,
+  layout,
+  onImageClick,
+}) => {
   // preload images, show loading grid until preloaded
   // load smaller thumbs rather than full-size images
 
