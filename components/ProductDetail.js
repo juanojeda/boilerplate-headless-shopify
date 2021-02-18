@@ -6,6 +6,7 @@ import AddToCartButton from "./AddToCartButton";
 import ImageViewer from "./ImageViewer";
 import MaxWidthContainer from "./MaxWidthContainer";
 import PriceTag from "./PriceTag";
+import SoldOutBadge from "./SoldOutBadge";
 import Title from "./Title";
 
 const G_TITLE = "title";
@@ -24,6 +25,7 @@ const Wrapper = styled(MaxWidthContainer)`
     "${G_SPECS}"
     "${G_DESC}";
   grid-auto-rows: max-content;
+  position: relative;
 
   ${getMedia("sm")} {
     grid-column-gap: 2rem;
@@ -102,6 +104,7 @@ const ProductDetail = ({ variants, title, availableForSale, images }) => {
     <Wrapper>
       <StyledTitle level={isMedia("xs") ? "H3" : "H2"}>{title}</StyledTitle>
       <SaleWrapper>
+        <SoldOutBadge availableForSale={availableForSale} />
         <PriceTag align="left" variants={variants} />
 
         <AddToCartButton
