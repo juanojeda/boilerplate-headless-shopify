@@ -12,6 +12,7 @@ const breakpoints = [
   { key: "sm", query: composeMediaQuery(480) },
   { key: "md", query: composeMediaQuery(720) },
   { key: "lg", query: composeMediaQuery(950) },
+  { key: "xl", query: composeMediaQuery(1024) },
 ];
 
 const light = "#f3f3f2";

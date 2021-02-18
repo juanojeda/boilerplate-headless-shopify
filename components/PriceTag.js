@@ -5,7 +5,7 @@ import { formatPrice } from "../utils/formatPrice";
 const Price = styled.div`
   font-size: 2rem;
   font-weight: 200;
-  text-align: center;
+  text-align: ${({ $align }) => $align};
 `;
 
 const Currency = styled.span`
@@ -14,10 +14,10 @@ const Currency = styled.span`
   text-transform: uppercase;
 `;
 
-const PriceTag = ({ variants }) => {
+const PriceTag = ({ variants, align = "center" }) => {
   const variant = variants[0];
   return (
-    <Price>
+    <Price $align={align}>
       {formatPrice(variant.priceV2)} <Currency>aud</Currency>
     </Price>
   );

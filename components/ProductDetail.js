@@ -27,7 +27,6 @@ const Wrapper = styled(MaxWidthContainer)`
 
   ${getMedia("sm")} {
     grid-column-gap: 2rem;
-    grid-row-gap: 2rem;
     grid-template-columns: 1.5fr 1fr;
     grid-template-areas:
       "${G_TITLE} ${G_TITLE}"
@@ -38,13 +37,30 @@ const Wrapper = styled(MaxWidthContainer)`
   }
 
   ${getMedia("md")} {
-    grid-auto-rows: min-content;
     grid-column-gap: 3rem;
+    grid-template-columns: 43rem auto;
     grid-template-areas:
       "${G_IMAGE_VIEWER} ${G_TITLE}"
       "${G_IMAGE_VIEWER} ${G_SALE_WRAPPER}"
       "${G_IMAGE_VIEWER} ${G_SPECS}"
       "${G_IMAGE_VIEWER} ${G_DESC}";
+  }
+
+  ${getMedia("lg")} {
+    grid-template-columns: 43rem 4fr 3fr;
+    grid-template-areas:
+      "${G_IMAGE_VIEWER} ${G_TITLE} ${G_TITLE}"
+      "${G_IMAGE_VIEWER} ${G_SALE_WRAPPER} blank"
+      "${G_IMAGE_VIEWER} ${G_SPECS} ${G_SPECS}"
+      "${G_IMAGE_VIEWER} ${G_DESC} ${G_DESC}";
+  }
+
+  ${getMedia("xl")} {
+    grid-column-gap: 4rem;
+    grid-template-areas:
+      "${G_IMAGE_VIEWER} ${G_TITLE} ${G_TITLE}"
+      "${G_IMAGE_VIEWER} ${G_SALE_WRAPPER} blank"
+      "${G_IMAGE_VIEWER} ${G_DESC} ${G_SPECS}";
   }
 `;
 
@@ -54,8 +70,6 @@ const StyledTitle = styled(Title)`
 
 const SaleWrapper = styled.div`
   grid-area: ${G_SALE_WRAPPER};
-  padding-top: 2rem;
-  padding-bottom: 2rem;
 `;
 
 const ImageViewerContainer = styled.div`
@@ -88,7 +102,7 @@ const ProductDetail = ({ variants, title, availableForSale, images }) => {
     <Wrapper>
       <StyledTitle level={isMedia("xs") ? "H3" : "H2"}>{title}</StyledTitle>
       <SaleWrapper>
-        <PriceTag variants={variants} />
+        <PriceTag align="left" variants={variants} />
 
         <AddToCartButton
           availableForSale={availableForSale}
