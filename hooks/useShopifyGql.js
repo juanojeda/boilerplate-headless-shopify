@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchShopifyGQLAsync } from "./fetchShopifyGQLAsync";
+import { fetchShopifyGQLAsync } from "../shared/fetchGQLAsync";
 
 const useShopifyGql = (operation, variables) => {
   const [loading, setLoading] = useState(true);

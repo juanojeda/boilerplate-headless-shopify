@@ -15,9 +15,8 @@ export async function getStaticPaths() {
   const unwrappedProducts = unwrapGqlEdges(products);
 
   return {
-    paths: unwrappedProducts.map(({ id, handle }) => ({
+    paths: unwrappedProducts.map(({ handle }) => ({
       params: {
-        id,
         handle,
       },
     })),
@@ -25,7 +24,7 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params: { id, handle } }) {
+export async function getStaticProps({ params: { handle } }) {
   const { productByHandle } = await fetchShopifyGQLAsync(productGQL, {
     handle,
   });

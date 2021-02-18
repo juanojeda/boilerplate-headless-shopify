@@ -1,5 +1,6 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
+import gfm from "remark-gfm";
 import styled from "styled-components";
 import useMedia from "../hooks/useMedia";
 import { getMedia } from "../utils/themeHelpers";
@@ -126,7 +127,9 @@ const ProductDetail = ({
       <Specifications
         dangerouslySetInnerHTML={{ __html: descriptionHtml }}
       ></Specifications>
-      <Description as={ReactMarkdown}>{template.description}</Description>
+      <Description as={ReactMarkdown} plugins={gfm}>
+        {template.description}
+      </Description>
     </Wrapper>
   );
 };
