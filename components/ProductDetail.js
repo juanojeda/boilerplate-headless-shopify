@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import useMedia from "../hooks/useMedia";
+import { getMedia } from "../utils/themeHelpers";
 import AddToCartButton from "./AddToCartButton";
 import ImageViewer from "./ImageViewer";
 import MaxWidthContainer from "./MaxWidthContainer";
@@ -10,15 +11,41 @@ import Title from "./Title";
 const G_TITLE = "title";
 const G_SALE_WRAPPER = "saleWrapper";
 const G_IMAGE_VIEWER = "imageViewer";
+const G_SPECS = "specifications";
+const G_DESC = "description";
 
 const Wrapper = styled(MaxWidthContainer)`
   padding: 1.5rem;
   display: grid;
   grid-template-areas:
-    "${G_IMAGE_VIEWER}"
     "${G_TITLE}"
-    "${G_SALE_WRAPPER}";
+    "${G_IMAGE_VIEWER}"
+    "${G_SALE_WRAPPER}"
+    "${G_SPECS}"
+    "${G_DESC}";
   grid-auto-rows: max-content;
+
+  ${getMedia("sm")} {
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-areas:
+      "${G_TITLE} ${G_TITLE}"
+      "${G_IMAGE_VIEWER} ${G_SALE_WRAPPER}"
+      "${G_IMAGE_VIEWER} blank"
+      "${G_SPECS} ${G_SPECS}"
+      "${G_DESC} ${G_DESC}";
+  }
+
+  ${getMedia("md")} {
+    grid-auto-rows: min-content;
+    grid-column-gap: 3rem;
+    grid-template-areas:
+      "${G_IMAGE_VIEWER} ${G_TITLE}"
+      "${G_IMAGE_VIEWER} ${G_SALE_WRAPPER}"
+      "${G_IMAGE_VIEWER} ${G_SPECS}"
+      "${G_IMAGE_VIEWER} ${G_DESC}";
+  }
 `;
 
 const StyledTitle = styled(Title)`
@@ -31,10 +58,27 @@ const SaleWrapper = styled.div`
   padding-bottom: 2rem;
 `;
 
-const StyledImageViewer = styled(ImageViewer)`
+const ImageViewerContainer = styled.div`
   grid-area: ${G_IMAGE_VIEWER};
-  display: grid;
   grid-row-gap: 2rem;
+`;
+
+const TextWrapper = styled.div`
+  ul,
+  ol {
+    padding: 0 1.5rem;
+    list-style-position: outside;
+  }
+  li {
+    margin: 1.5rem 0;
+  }
+`;
+
+const Specifications = styled(TextWrapper)`
+  grid-area: ${G_SPECS};
+`;
+const Description = styled(TextWrapper)`
+  grid-area: ${G_DESC};
 `;
 
 const ProductDetail = ({ variants, title, availableForSale, images }) => {
@@ -42,7 +86,7 @@ const ProductDetail = ({ variants, title, availableForSale, images }) => {
 
   return (
     <Wrapper>
-      <StyledTitle level={isMedia("xs") ? "H3" : "H1"}>{title}</StyledTitle>
+      <StyledTitle level={isMedia("xs") ? "H3" : "H2"}>{title}</StyledTitle>
       <SaleWrapper>
         <PriceTag variants={variants} />
 
@@ -51,7 +95,26 @@ const ProductDetail = ({ variants, title, availableForSale, images }) => {
           variants={variants}
         />
       </SaleWrapper>
-      <StyledImageViewer images={images} />
+      <ImageViewerContainer>
+        <ImageViewer images={images} />
+      </ImageViewerContainer>
+      <Specifications>
+        <Title level="H5">Specifications</Title>
+        <ul>
+          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+          <li>Ipsam eveniet ut illo tempore soluta atque?</li>
+          <li>Repellendus officiis omnis quas, quasi neque vitae et dolor.</li>
+          <li>Sunt explicabo nihil obcaecati, fugiat corporis.</li>
+        </ul>
+      </Specifications>
+      <Description>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus
+          natus, eos quasi incidunt eligendi commodi dolore cum repellat
+          provident mollitia aliquam est accusantium hic labore? Amet, in
+          voluptatem. Distinctio, in.
+        </p>
+      </Description>
     </Wrapper>
   );
 };
