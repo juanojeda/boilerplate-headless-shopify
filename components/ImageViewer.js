@@ -2,17 +2,54 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import useMedia from "../hooks/useMedia";
 import usePreloader from "../hooks/usePreloader";
+import Icon from "./Icon";
+import { MobileChevronMajor } from "@shopify/polaris-icons";
 import Image from "./Image";
 import ImageGrid from "./ImageGrid";
+import { getColor } from "../utils/themeHelpers";
+import { transparentize } from "polished";
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  position: relative;
+`;
 const MainImage = styled(Image)``;
+const NavIcon = styled(Icon).attrs({ icon: MobileChevronMajor })`
+  background: ${(props) => transparentize(0.7, getColor("black")(props))};
+  fill: ${(props) => transparentize(0.1, getColor("white")(props))};
+  height: 5rem;
+  width: 4rem;
+`;
+const BaseButton = styled.button`
+  appearance: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0;
+  height: 100%;
+  padding: 0;
+  position: absolute;
+`;
+const NextButton = styled(BaseButton)`
+  right: 0;
+  ${NavIcon} {
+    transform: rotate(180deg);
+  }
+`;
+const PrevButton = styled(BaseButton)`
+  left: 0;
+`;
 
 const MobileControllers = ({ onPrev, onNext }) => {
   return (
     <>
-      <button onClick={onPrev}>Previous</button>
-      <button onClick={onNext}>Next</button>
+      <PrevButton onClick={onPrev}>
+        <NavIcon />
+        Previous
+      </PrevButton>
+      <NextButton onClick={onNext}>
+        <NavIcon />
+        Next
+      </NextButton>
     </>
   );
 };
@@ -41,7 +78,7 @@ const ImageViewer = ({ images, className }) => {
   return (
     <Wrapper className={className}>
       <MainImage loaded={isLoaded} src={currentHero.transformedSrc} />
-      {isMedia("xs") ? (
+      {isMedia("xs") || isMedia("sm") ? (
         <MobileControllers onNext={handleNext} onPrev={handlePrev} />
       ) : (
         <ImageGrid layout="row" images={images} onImageClick={onSetImage} />
