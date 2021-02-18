@@ -1,17 +1,5 @@
 import { useEffect, useState } from "react";
-import { GraphQLClient } from "graphql-request";
-
-const URL = `https://${process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN}/api/2021-01/graphql.json`;
-const HEADERS = {
-  "X-Shopify-Storefront-Access-Token":
-    process.env.NEXT_PUBLIC_SHOPIFY_ACCESS_TOKEN,
-  "Content-Type": "application/json",
-};
-
-export async function fetchShopifyGQLAsync(operation, variables = undefined) {
-  const client = new GraphQLClient(URL, { headers: HEADERS });
-  return client.request(operation, variables);
-}
+import { fetchShopifyGQLAsync } from "./fetchShopifyGQLAsync";
 
 const useShopifyGql = (operation, variables) => {
   const [loading, setLoading] = useState(true);

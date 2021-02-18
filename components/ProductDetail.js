@@ -1,4 +1,5 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
 import styled from "styled-components";
 import useMedia from "../hooks/useMedia";
 import { getMedia } from "../utils/themeHelpers";
@@ -97,7 +98,14 @@ const Description = styled(TextWrapper)`
   grid-area: ${G_DESC};
 `;
 
-const ProductDetail = ({ variants, title, availableForSale, images }) => {
+const ProductDetail = ({
+  variants,
+  title,
+  availableForSale,
+  images,
+  descriptionHtml,
+  template,
+}) => {
   const { isMedia } = useMedia();
 
   return (
@@ -115,23 +123,10 @@ const ProductDetail = ({ variants, title, availableForSale, images }) => {
       <ImageViewerContainer>
         <ImageViewer images={images} />
       </ImageViewerContainer>
-      <Specifications>
-        <Title level="H5">Specifications</Title>
-        <ul>
-          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
-          <li>Ipsam eveniet ut illo tempore soluta atque?</li>
-          <li>Repellendus officiis omnis quas, quasi neque vitae et dolor.</li>
-          <li>Sunt explicabo nihil obcaecati, fugiat corporis.</li>
-        </ul>
-      </Specifications>
-      <Description>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus
-          natus, eos quasi incidunt eligendi commodi dolore cum repellat
-          provident mollitia aliquam est accusantium hic labore? Amet, in
-          voluptatem. Distinctio, in.
-        </p>
-      </Description>
+      <Specifications
+        dangerouslySetInnerHTML={{ __html: descriptionHtml }}
+      ></Specifications>
+      <Description as={ReactMarkdown}>{template.description}</Description>
     </Wrapper>
   );
 };

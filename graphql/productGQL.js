@@ -5,6 +5,7 @@ const productGQL = gql`
       id
       title
       availableForSale
+      descriptionHtml
       variants(first: 1) {
         edges {
           node {
