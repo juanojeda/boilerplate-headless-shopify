@@ -127,7 +127,7 @@ const ProductDetail = ({
       <Specifications
         dangerouslySetInnerHTML={{ __html: descriptionHtml }}
       ></Specifications>
-      <Description as={ReactMarkdown} plugins={gfm}>
+      <Description as={ReactMarkdown} plugins={[gfm]}>
         {template.description}
       </Description>
     </Wrapper>
