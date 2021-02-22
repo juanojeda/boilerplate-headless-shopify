@@ -8,7 +8,17 @@ import PriceTag from "./PriceTag";
 import SoldOutBadge from "./SoldOutBadge";
 import AddToCartButton from "./AddToCartButton";
 
+const G_PRODUCT_LINK = "productLink";
+const G_PRODUCT_CTA = "productCTA";
+
 const Wrapper = styled.div`
+  display: grid;
+  grid-row-gap: 2rem;
+  grid-template-areas: ${`
+    "${G_PRODUCT_LINK}"
+    "${G_PRODUCT_CTA}"
+  `};
+  grid-template-rows: 1fr 5.5rem;
   margin: 1rem 0;
   position: relative;
 `;
@@ -16,6 +26,9 @@ const Wrapper = styled.div`
 const ProductLink = styled.a`
   color: inherit;
   cursor: pointer;
+  display: grid;
+  grid-area: ${G_PRODUCT_LINK};
+  grid-template-rows: auto 3fr 1fr;
   text-decoration: none;
   transition: 200ms ease color;
 
@@ -26,6 +39,15 @@ const ProductLink = styled.a`
   &:hover ${StyledImageGrid} {
     opacity: 0.6;
   }
+`;
+
+const StyledPriceTag = styled(PriceTag)`
+  align-self: flex-end;
+`;
+
+const CTA = styled(AddToCartButton)`
+  grid-area: ${G_PRODUCT_CTA};
+  margin: 0;
 `;
 
 const StyledImageGrid = styled(ImageGrid)``;
@@ -48,13 +70,10 @@ const ProductThumb = ({
           <StyledImageGrid layout="mosaic" images={images} />
           <ProductTitle>{title}</ProductTitle>
           <SoldOutBadge availableForSale={availableForSale} />
-          <PriceTag variants={variants} />
+          <StyledPriceTag variants={variants} />
         </ProductLink>
       </Link>
-      <AddToCartButton
-        availableForSale={availableForSale}
-        variants={variants}
-      />
+      <CTA availableForSale={availableForSale} variants={variants} />
     </Wrapper>
   );
 };
