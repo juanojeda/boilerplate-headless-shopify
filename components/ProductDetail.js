@@ -9,6 +9,7 @@ import ImageViewer from "./ImageViewer";
 import MaxWidthContainer from "./MaxWidthContainer";
 import PriceTag from "./PriceTag";
 import SoldOutBadge from "./SoldOutBadge";
+import TextWrapper from "./TextWrapper";
 import Title from "./Title";
 
 const G_TITLE = "title";
@@ -18,7 +19,6 @@ const G_SPECS = "specifications";
 const G_DESC = "description";
 
 const Wrapper = styled(MaxWidthContainer)`
-  padding: 1.5rem;
   display: grid;
   grid-template-areas:
     "${G_TITLE}"
@@ -27,6 +27,7 @@ const Wrapper = styled(MaxWidthContainer)`
     "${G_SPECS}"
     "${G_DESC}";
   grid-auto-rows: max-content;
+  padding-top: 3rem;
   position: relative;
 
   ${getMedia("sm")} {
@@ -79,17 +80,6 @@ const SaleWrapper = styled.div`
 const ImageViewerContainer = styled.div`
   grid-area: ${G_IMAGE_VIEWER};
   grid-row-gap: 2rem;
-`;
-
-const TextWrapper = styled.div`
-  ul,
-  ol {
-    padding: 0 1.5rem;
-    list-style-position: outside;
-  }
-  li {
-    margin: 1.5rem 0;
-  }
 `;
 
 const Specifications = styled(TextWrapper)`

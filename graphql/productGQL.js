@@ -20,7 +20,7 @@ const productGQL = gql`
       images(first: 4) {
         edges {
           node {
-            transformedSrc(
+            src: transformedSrc(
               maxHeight: 430
               maxWidth: 430
               scale: 2

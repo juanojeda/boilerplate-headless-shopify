@@ -10,6 +10,8 @@ import { getColor } from "../utils/themeHelpers";
 import { transparentize } from "polished";
 
 const Wrapper = styled.div`
+  display: grid;
+  grid-row-gap: 1.5rem;
   position: relative;
 `;
 const MainImage = styled(Image)``;
@@ -77,7 +79,7 @@ const ImageViewer = ({ images, className }) => {
 
   return (
     <Wrapper className={className}>
-      <MainImage loaded={isLoaded} src={currentHero.transformedSrc} />
+      <MainImage loaded={isLoaded} src={currentHero.src} />
       {isMedia("xs") || isMedia("sm") ? (
         <MobileControllers onNext={handleNext} onPrev={handlePrev} />
       ) : (

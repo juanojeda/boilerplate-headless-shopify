@@ -19,11 +19,12 @@ const Img = styled.img`
   object-fit: cover;
   width: 100%;
   height: 100%;
+  max-height: ${({ $maxHeight }) => $maxHeight};
 
   ${({ loaded }) =>
     !loaded &&
     css`
-      padding-bottom: 100%;
+      padding-bottom: ${({ $maxHeight }) => $maxHeight || "100%"};
       animation-duration: 1.5s;
       animation-timing-function: ease-in;
       animation-direction: alternate;
@@ -32,7 +33,7 @@ const Img = styled.img`
     `}
 `;
 
-const Image = ({ alt, className, loaded, onClick, src }) => {
+const Image = ({ alt, className, loaded, onClick, src, maxHeight }) => {
   return (
     <Img
       className={className}
@@ -42,6 +43,7 @@ const Image = ({ alt, className, loaded, onClick, src }) => {
       loaded={loaded}
       onClick={onClick}
       src={src}
+      $maxHeight={maxHeight}
     />
   );
 };

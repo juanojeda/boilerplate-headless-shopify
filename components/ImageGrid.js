@@ -73,11 +73,11 @@ const ImageGrid = ({
 
   return (
     <Wrapper className={className} $layout={layout}>
-      {images.map(({ id, transformedSrc, altText }) => (
+      {images.map(({ id, src, altText }) => (
         <StyledImage
           loaded={isLoaded}
           key={id}
-          src={`${transformedSrc}`}
+          src={`${src}`}
           alt={altText}
           $layout={layout}
           onClick={onImageClick && onClickHandler(id)}

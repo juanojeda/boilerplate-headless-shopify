@@ -27,7 +27,7 @@ const catalogGQL = gql`
             images(first: 4) {
               edges {
                 node {
-                  transformedSrc(scale: 2, maxHeight: 300, maxWidth: 300)
+                  src: transformedSrc(scale: 2, maxHeight: 300, maxWidth: 300)
                   altText
                   id
                   width

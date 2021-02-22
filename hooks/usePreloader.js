@@ -4,11 +4,11 @@ import isClient from "../utils/isClient";
 const preloader = async (images) => {
   return Promise.all(
     images.map(
-      (img) =>
+      ({ src }) =>
         new Promise((resolve) => {
           const pre = new Image();
           pre.onload = resolve;
-          pre.src = img.transformedSrc;
+          pre.src = src;
         })
     )
   );

@@ -6,7 +6,7 @@ import ProductThumb from "./ProductThumb";
 import Title from "./Title";
 
 const Wrapper = styled(MaxWidthContainer)`
-  padding: 1.5rem;
+  padding-top: 1.5rem;
 `;
 
 const Grid = styled.div`

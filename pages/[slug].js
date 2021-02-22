@@ -1,4 +1,5 @@
 import React from "react";
+import GeneralPageContent from "../components/GeneralPageContent";
 import pageContentGQL from "../graphql/pageContentGQL";
 import pagePathsGQL from "../graphql/pagePathsGQL";
 import { fetchContentGQLAsync } from "../shared/fetchGQLAsync";
@@ -25,8 +26,14 @@ export const getStaticProps = async ({ params: { slug } }) => {
   };
 };
 
-const CMSContentPage = ({ id, slug, title }) => {
-  return <div>{slug}</div>;
+const CMSContentPage = ({ id, content, title, coverImage }) => {
+  return (
+    <GeneralPageContent
+      content={content}
+      title={title}
+      coverImage={coverImage}
+    />
+  );
 };
 
 export default CMSContentPage;

@@ -19,8 +19,6 @@ const Wrapper = styled(MaxWidthContainer)`
   `};
   grid-template-columns: 50px 100px 50px;
   justify-content: space-between;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
   padding-top: 1.5rem;
   ${HorizontalRule};
 
