@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
+import Head from "next/head";
 
 import MaxWidthContainer from "./MaxWidthContainer";
 import Title from "./Title";
@@ -27,6 +28,9 @@ const GeneralPageContent = ({ title, content, coverImage }) => {
 
   return (
     <>
+      <Head>
+        <title>{title} | HG Blades</title>
+      </Head>
       <HeroImageWrapper>
         <Image src={imgUrl} maxHeight="45rem" loaded={isLoaded} />
       </HeroImageWrapper>

@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import styled, { ThemeContext } from "styled-components";
+import React from "react";
+import styled from "styled-components";
 import dynamic from "next/dynamic";
 import Logo from "./Logo.js";
 import Nav from "./Nav.js";
@@ -44,7 +44,6 @@ const StyledCart = styled.div`
 
 const Header = ({ className }) => {
   const Cart = dynamic(() => import("./Cart.js"), { ssr: false });
-  const theme = useContext(ThemeContext);
 
   return (
     <Wrapper className={className}>
