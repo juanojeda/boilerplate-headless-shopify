@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import pagePathsGQL from "../graphql/pagePathsGQL";
+import NAV_ITEMS from "../shared/ConstNavItems";
 import { fetchContentGQLAsync } from "../shared/fetchGQLAsync";
 import isClient from "../utils/isClient";
 
@@ -37,8 +38,7 @@ export const WithNavData = ({ children }) => {
     fetchContentGQLAsync(pagePathsGQL).then(({ pages }) => {
       if (canSetLoaded) {
         const navData = formatNavData(pages);
-        console.log(navData);
-        setNavData(navData);
+        setNavData([...NAV_ITEMS, ...navData]);
         setLoading(false);
       }
     });

@@ -5,7 +5,6 @@ import {
   MobileCancelMajor,
   MobileHamburgerMajor,
 } from "@shopify/polaris-icons";
-import NAV_ITEMS from "../shared/ConstNavItems";
 import useMedia from "../hooks/useMedia";
 import Drawer from "./Drawer";
 import Icon from "./Icon";
@@ -51,7 +50,7 @@ const OpenNav = ({ isSideDrawer, onClose }) => {
     >
       {isSideDrawer && <Icon icon={MobileCancelMajor} onClick={onClose} />}
       <NavList $isSideDrawer={isSideDrawer}>
-        {[...NAV_ITEMS, ...cmsPages].map((item) => (
+        {cmsPages.map((item) => (
           <NavItem $isSideDrawer={isSideDrawer} key={item.route}>
             <Link passHref href={item.route}>
               <Anchor onClick={onClose}>{item.title}</Anchor>

@@ -11,7 +11,7 @@ const StyledAnchor = styled.a`
 `;
 
 const Logo = ({ className }) => (
-  <Link href="/">
+  <Link href="/" passHref>
     <StyledAnchor className={className}>
       <StyledImg src="/images/logo.png" />
     </StyledAnchor>
