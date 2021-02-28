@@ -11,10 +11,15 @@ const Wrapper = styled.div`
   justify-self: flex-end;
 `;
 
-const CartMiniWrapper = styled.div`
+const CartMiniWrapper = styled.button`
+  align-items: center;
+  appearance: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
   display: flex;
   flex-direction: row-reverse;
-  align-items: center;
+  padding: 0;
 `;
 
 const CartIcon = styled(Icon)`
@@ -57,11 +62,9 @@ const Cart = ({ className }) => {
   const { cart, loading, setCartOpen, cartOpen } = useContext(ShopifyContext);
 
   const handleCartToggle = () => {
-    console.log("TOGGLING");
     setCartOpen(!cartOpen);
   };
   const handleCartClose = () => {
-    console.log("CLOSING");
     setCartOpen(false);
   };
 
