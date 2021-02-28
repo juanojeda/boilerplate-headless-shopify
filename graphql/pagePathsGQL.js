@@ -5,6 +5,8 @@ const pagePathsGQL = gql`
     pages {
       slug
       id
+      title
+      navigationItem
     }
   }
 `;
