@@ -100,7 +100,7 @@ const ProductDetail = ({
   const { isMedia } = useMedia();
 
   return (
-    <Wrapper>
+    <Wrapper role="main">
       <StyledTitle level={isMedia("xs") ? "H3" : "H2"}>{title}</StyledTitle>
       <SaleWrapper>
         <SoldOutBadge availableForSale={availableForSale} />
@@ -112,12 +112,17 @@ const ProductDetail = ({
         />
       </SaleWrapper>
       <ImageViewerContainer>
-        <ImageViewer images={images} />
+        <ImageViewer images={images} forwardLabel={title} />
       </ImageViewerContainer>
       <Specifications
         dangerouslySetInnerHTML={{ __html: descriptionHtml }}
+        aria-label="Product specifications"
       ></Specifications>
-      <Description as={ReactMarkdown} plugins={[gfm]}>
+      <Description
+        as={ReactMarkdown}
+        plugins={[gfm]}
+        aria-label="General product description"
+      >
         {template.description}
       </Description>
     </Wrapper>

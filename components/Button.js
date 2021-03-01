@@ -73,6 +73,7 @@ const Button = ({
   variant,
   children,
   disabled,
+  ...props
 }) => {
   const RenderButton = variants[variant];
   return (
@@ -82,6 +83,7 @@ const Button = ({
       fullWidth={fullWidth}
       className={className}
       {...(asLink ? { href } : { onClick })}
+      {...props}
     >
       {children}
     </RenderButton>

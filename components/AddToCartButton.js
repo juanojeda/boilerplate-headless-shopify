@@ -13,6 +13,7 @@ const AddToCartButton = ({ variants, availableForSale, className }) => {
         variant="secondary"
         fullWidth
         onClick={onAddToCart}
+        aria-label="Add to cart"
       >
         Add to cart
       </Button>

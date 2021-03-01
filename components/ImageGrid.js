@@ -59,11 +59,11 @@ const StyledImage = styled(Image)`
 `;
 
 const ImageGrid = ({
-  overridedLoaded = false,
   images,
   className,
   layout,
   onImageClick,
+  forwardLabel,
 }) => {
   // preload images, show loading grid until preloaded
   // load smaller thumbs rather than full-size images
@@ -72,7 +72,7 @@ const ImageGrid = ({
   const onClickHandler = (id) => () => onImageClick(id);
 
   return (
-    <Wrapper className={className} $layout={layout}>
+    <Wrapper className={className} $layout={layout} aria-label={forwardLabel}>
       {images.map(({ id, src, altText }) => (
         <StyledImage
           loaded={isLoaded}
@@ -81,6 +81,7 @@ const ImageGrid = ({
           alt={altText}
           $layout={layout}
           onClick={onImageClick && onClickHandler(id)}
+          aria-labelledby={forwardLabel}
         />
       ))}
     </Wrapper>

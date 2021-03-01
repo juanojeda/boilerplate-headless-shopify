@@ -33,7 +33,15 @@ const Img = styled.img`
     `}
 `;
 
-const Image = ({ alt, className, loaded, onClick, src, maxHeight }) => {
+const Image = ({
+  alt,
+  className,
+  loaded,
+  onClick,
+  src,
+  maxHeight,
+  ...props
+}) => {
   return (
     <Img
       className={className}
@@ -44,6 +52,7 @@ const Image = ({ alt, className, loaded, onClick, src, maxHeight }) => {
       onClick={onClick}
       src={src}
       $maxHeight={maxHeight}
+      {...props}
     />
   );
 };

@@ -59,7 +59,7 @@ const MobileControllers = ({ onPrev, onNext }) => {
 const wrapIndex = (newIndex, max) =>
   newIndex < 0 ? max : newIndex > max ? 0 : newIndex;
 
-const ImageViewer = ({ images, className }) => {
+const ImageViewer = ({ images, className, forwardLabel }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const isLoaded = usePreloader(images);
   const { isMedia } = useMedia();
@@ -78,8 +78,16 @@ const ImageViewer = ({ images, className }) => {
   const handleNext = handleShiftIndex(1);
 
   return (
-    <Wrapper className={className}>
-      <MainImage loaded={isLoaded} src={currentHero.src} />
+    <Wrapper
+      className={className}
+      role="img"
+      aria-label={`Various angles of the product: ${forwardLabel}`}
+    >
+      <MainImage
+        loaded={isLoaded}
+        src={currentHero.src}
+        aria-labelledby={forwardLabel}
+      />
       {isMedia("xs") || isMedia("sm") ? (
         <MobileControllers onNext={handleNext} onPrev={handlePrev} />
       ) : (
