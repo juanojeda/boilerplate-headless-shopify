@@ -10,7 +10,7 @@ const GQL_SERVER = {
     },
   },
   STRAPI: {
-    URL: `http://${process.env.NEXT_PUBLIC_STRAPI_GQL_SERVER}`,
+    URL: `https://${process.env.NEXT_PUBLIC_STRAPI_GQL_SERVER}`,
     HEADERS: {
       "Content-Type": "application/json",
     },
