@@ -1,16 +1,13 @@
-import styled from "styled-components";
+import Footer from "./Footer.js";
 import Header from "./Header.js";
-
-const Wrapper = styled.div``;
-
-const StyledHeader = styled(Header)``;
 
 const Layout = ({ children }) => {
   return (
-    <Wrapper>
-      <StyledHeader />
+    <>
+      <Header />
       {children}
-    </Wrapper>
+      <Footer />
+    </>
   );
 };
 

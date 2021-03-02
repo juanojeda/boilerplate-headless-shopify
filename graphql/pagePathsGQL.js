@@ -7,6 +7,7 @@ const pagePathsGQL = gql`
       id
       title
       navigationItem
+      footerItem
     }
   }
 `;

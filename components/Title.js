@@ -37,8 +37,14 @@ const H5 = styled(BaseTitle).attrs(({ asElement }) => ({
   font-weight: 800;
   margin: 0.75rem 0;
 `;
+const H6 = styled(BaseTitle).attrs(({ asElement }) => ({
+  as: asElement || "h6",
+}))`
+  font-size: 1.6rem;
+  margin: 0.75rem 0;
+`;
 
-const levels = { H1, H2, H3, H4, H5 };
+const levels = { H1, H2, H3, H4, H5, H6 };
 
 const Title = ({ children, level = "H1", className, asElement }) => {
   const RenderTitle = levels[level];

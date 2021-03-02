@@ -8,8 +8,8 @@ import {
 import useMedia from "../hooks/useMedia";
 import Drawer from "./Drawer";
 import Icon from "./Icon";
-import { getColor } from "../utils/themeHelpers";
 import { useNavData } from "../hooks/useNav";
+import NavAnchor from "./NavAnchor";
 
 const Wrapper = styled.div``;
 
@@ -26,20 +26,8 @@ const NavItem = styled.li`
   padding-right: 2rem;
 `;
 
-const Anchor = styled.a`
-  display: inline-block;
-  padding-bottom: 2rem;
-  padding-top: 2rem;
-  text-decoration: none;
-  text-transform: uppercase;
-  color: ${getColor("links")};
-  &:hover {
-    color: ${getColor("links", "light_40")};
-  }
-`;
-
 const OpenNav = ({ isSideDrawer, onClose }) => {
-  const cmsPages = useNavData();
+  const { navData } = useNavData();
 
   return (
     <NavContainer
@@ -50,10 +38,10 @@ const OpenNav = ({ isSideDrawer, onClose }) => {
     >
       {isSideDrawer && <Icon icon={MobileCancelMajor} onClick={onClose} />}
       <NavList $isSideDrawer={isSideDrawer}>
-        {cmsPages.map((item) => (
+        {navData.map((item) => (
           <NavItem $isSideDrawer={isSideDrawer} key={item.route}>
             <Link passHref href={item.route}>
-              <Anchor onClick={onClose}>{item.title}</Anchor>
+              <NavAnchor onClick={onClose}>{item.title}</NavAnchor>
             </Link>
           </NavItem>
         ))}

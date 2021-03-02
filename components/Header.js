@@ -20,7 +20,8 @@ const Wrapper = styled(MaxWidthContainer)`
   grid-template-columns: 50px 100px 50px;
   justify-content: space-between;
   padding-top: 1.5rem;
-  ${HorizontalRule};
+  padding-bottom: 0;
+  ${HorizontalRule()};
 
   ${getMedia("lg")} {
     grid-template-columns: calc(50% - 100px) 100px calc(50% - 100px);
