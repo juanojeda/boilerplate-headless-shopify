@@ -15,7 +15,14 @@ import { useNavData } from "../hooks/useNav";
 const Wrapper = styled(MaxWidthContainer)``;
 const HeroImageWrapper = styled.div`
   height: 45vh;
+  max-height: 45rem;
   overflow: hidden;
+`;
+const HeroImage = styled(Image)`
+  max-height: 45rem;
+  max-width: 1300px;
+  display: block;
+  margin: 0 auto;
 `;
 const Body = styled(TextWrapper)`
   max-width: 60ch;
@@ -38,7 +45,7 @@ const GeneralPageContent = ({ title, content, coverImage, navContent }) => {
         <title>{title} | HG Blades</title>
       </Head>
       <HeroImageWrapper>
-        <Image src={imgUrl} maxHeight="45rem" loaded={isLoaded} />
+        <HeroImage src={imgUrl} loaded={isLoaded} />
       </HeroImageWrapper>
       <Wrapper>
         <Title>{title}</Title>
