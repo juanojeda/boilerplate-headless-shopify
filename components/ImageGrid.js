@@ -43,6 +43,7 @@ const Wrapper = styled.div`
 `;
 
 const StyledImage = styled(Image)`
+  height: auto;
   &:first-of-type {
     ${(props) => isRow(props) && GRID_FIRST_IMAGE_AREA_ROW};
     ${(props) => isMosaic(props) && GRID_FIRST_IMAGE_AREA_MOSAIC};
