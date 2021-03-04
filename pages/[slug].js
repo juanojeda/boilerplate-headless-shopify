@@ -18,20 +18,23 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params: { slug } }) => {
-  const { pages } = await fetchContentGQLAsync(pageContentGQL, { slug });
+  const { pages, navContent } = await fetchContentGQLAsync(pageContentGQL, {
+    slug,
+  });
   const page = pages[0];
 
   return {
-    props: page,
+    props: { ...page, navContent },
   };
 };
 
-const CMSContentPage = ({ id, content, title, coverImage }) => {
+const CMSContentPage = ({ id, content, title, coverImage, navContent }) => {
   return (
     <GeneralPageContent
       content={content}
       title={title}
       coverImage={coverImage}
+      navContent={navContent}
     />
   );
 };

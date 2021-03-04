@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 import { useCatalogData } from "../hooks/useCatalog";
+import { useNavData } from "../hooks/useNav";
 import { getMedia } from "../utils/themeHelpers";
 import MaxWidthContainer from "./MaxWidthContainer";
 import ProductThumb from "./ProductThumb";
@@ -26,9 +28,14 @@ const Grid = styled.div`
   }
 `;
 
-const Catalog = () => {
+const Catalog = ({ navContent }) => {
   const { productData } = useCatalogData();
   const addToCart = (id) => console.log(id);
+  const { setCmsPageData } = useNavData();
+
+  useEffect(() => {
+    setCmsPageData(navContent);
+  }, [setCmsPageData]);
 
   return (
     <Wrapper>

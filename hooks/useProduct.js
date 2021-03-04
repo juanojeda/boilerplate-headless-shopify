@@ -19,7 +19,6 @@ export const useProductData = () => {
 };
 
 export const WithProductData = ({ productHandle, children }) => {
-  const gqlOperation = productGQL(productHandle);
   const { loading, data } = useShopifyGql(productGQL, {
     handle: productHandle,
   });

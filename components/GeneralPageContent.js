@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
@@ -10,6 +10,7 @@ import TextWrapper from "./TextWrapper";
 import Image from "./Image";
 import usePreloader from "../hooks/usePreloader";
 import useMedia from "../hooks/useMedia";
+import { useNavData } from "../hooks/useNav";
 
 const Wrapper = styled(MaxWidthContainer)``;
 const HeroImageWrapper = styled.div`
@@ -20,11 +21,16 @@ const Body = styled(TextWrapper)`
   max-width: 60ch;
 `;
 
-const GeneralPageContent = ({ title, content, coverImage }) => {
+const GeneralPageContent = ({ title, content, coverImage, navContent }) => {
   const { isMedia } = useMedia();
   const format = isMedia("xs") || isMedia("sm") ? "medium" : "large";
   const imgUrl = coverImage.formats[format].url;
   const isLoaded = usePreloader([{ src: imgUrl }]);
+  const { setCmsPageData } = useNavData();
+
+  useEffect(() => {
+    setCmsPageData(navContent);
+  }, [setCmsPageData]);
 
   return (
     <>

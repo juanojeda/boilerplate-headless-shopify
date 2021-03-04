@@ -29,55 +29,38 @@ const formatPageData = (pages) =>
   }));
 
 export const WithNavData = ({ children }) => {
-  const [cmsData, setCmsData] = useState(null);
+  const [cmsPageData, setCmsPageData] = useState(null);
   const [navData, setNavData] = useState(null);
   const [footerData, setFooterData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  let canSetLoaded = true;
   useEffect(() => {
-    if (cmsData !== null || !isClient()) return;
+    if (!cmsPageData || navData !== null) return;
 
-    fetchContentGQLAsync(pagePathsGQL).then(({ pages }) => {
-      if (canSetLoaded) {
-        setCmsData(pages);
-      }
-    });
-
-    return () => {
-      canSetLoaded = false;
-    };
-  }, [cmsData]);
-
-  useEffect(() => {
-    if (!cmsData || navData !== null || !isClient()) return;
-
-    const navPages = formatPageData(cmsData.filter(filterNavItems));
+    const navPages = formatPageData(cmsPageData.filter(filterNavItems));
 
     setNavData([...NAV_ITEMS, ...navPages]);
-  }, [cmsData, navData]);
+  }, [cmsPageData, navData]);
 
   useEffect(() => {
-    if (!cmsData || footerData !== null || !isClient()) return;
+    if (!cmsPageData || footerData !== null) return;
 
     const footerPages = formatPageData(
-      cmsData.filter(filterFooterItems).sort(({ id: a }, { id: b }) => a - b)
+      cmsPageData
+        .filter(filterFooterItems)
+        .sort(({ id: a }, { id: b }) => a - b)
     );
 
     setFooterData(footerPages);
-  }, [cmsData, footerData]);
+  }, [cmsPageData, footerData]);
 
   useEffect(() => {
-    if (!navData || !footerData || !loading) {
-      return;
-    }
-
     setLoading(false);
   }, [navData, footerData, loading]);
 
   return (
-    <NavContext.Provider value={{ navData, footerData }}>
-      {navData ? children : loading ? <Loading /> : <div>Error!</div>}
+    <NavContext.Provider value={{ navData, footerData, setCmsPageData }}>
+      {children}
     </NavContext.Provider>
   );
 };

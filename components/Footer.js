@@ -61,13 +61,14 @@ const Footer = () => {
       <FooterSection>
         <Title level="H6">More Info</Title>
         <NavLinkList>
-          {footerData.map((item) => (
-            <NavLinkItem key={item.route}>
-              <Link href={item.route} passHref>
-                <NavAnchor $isCompact>{item.title}</NavAnchor>
-              </Link>
-            </NavLinkItem>
-          ))}
+          {footerData &&
+            footerData.map((item) => (
+              <NavLinkItem key={item.route}>
+                <Link href={item.route} passHref>
+                  <NavAnchor $isCompact>{item.title}</NavAnchor>
+                </Link>
+              </NavLinkItem>
+            ))}
         </NavLinkList>
       </FooterSection>
     </Wrapper>

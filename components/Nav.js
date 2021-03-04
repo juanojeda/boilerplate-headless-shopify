@@ -38,13 +38,14 @@ const OpenNav = ({ isSideDrawer, onClose }) => {
     >
       {isSideDrawer && <Icon icon={MobileCancelMajor} onClick={onClose} />}
       <NavList $isSideDrawer={isSideDrawer}>
-        {navData.map((item) => (
-          <NavItem $isSideDrawer={isSideDrawer} key={item.route}>
-            <Link passHref href={item.route}>
-              <NavAnchor onClick={onClose}>{item.title}</NavAnchor>
-            </Link>
-          </NavItem>
-        ))}
+        {navData &&
+          navData.map((item) => (
+            <NavItem $isSideDrawer={isSideDrawer} key={item.route}>
+              <Link passHref href={item.route}>
+                <NavAnchor onClick={onClose}>{item.title}</NavAnchor>
+              </Link>
+            </NavItem>
+          ))}
       </NavList>
     </NavContainer>
   );
