@@ -35,7 +35,7 @@ const CartHeader = styled.div`
   padding-bottom: 1rem;
   position: relative;
 
-  ${HorizontalRule};
+  ${HorizontalRule("bottom")};
 `;
 
 const CartContentWrapper = styled.div`
