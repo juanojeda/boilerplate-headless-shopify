@@ -72,6 +72,7 @@ const SubtotalNote = styled.p`
 
 const CloseIcon = styled(Icon)`
   order: 2;
+  cursor: pointer;
 `;
 
 const EmptyCart = styled.div`

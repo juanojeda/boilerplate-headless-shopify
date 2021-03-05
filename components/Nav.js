@@ -26,6 +26,10 @@ const NavItem = styled.li`
   padding-right: 2rem;
 `;
 
+const StyledIcon = styled(Icon)`
+  cursor: pointer;
+`;
+
 const OpenNav = ({ isSideDrawer, onClose }) => {
   const { navData } = useNavData();
 
@@ -36,7 +40,9 @@ const OpenNav = ({ isSideDrawer, onClose }) => {
       fromDirection="left"
       isOpen={true}
     >
-      {isSideDrawer && <Icon icon={MobileCancelMajor} onClick={onClose} />}
+      {isSideDrawer && (
+        <StyledIcon icon={MobileCancelMajor} onClick={onClose} />
+      )}
       <NavList $isSideDrawer={isSideDrawer}>
         {navData &&
           navData.map((item) => (
