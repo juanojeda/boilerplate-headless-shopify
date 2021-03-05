@@ -11,12 +11,21 @@ const fromRight = css`
   right: 0;
 `;
 
+const Overlay = styled.div`
+  background: ${({ theme: { colors } }) =>
+    transparentize(0.4, colors.black.base)};
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1;
+`;
+
 const StyledDrawer = styled.div`
   ${({ fromDirection }) => (fromDirection === "left" ? fromLeft : fromRight)};
   display: ${({ isOpen }) => (isOpen ? "block" : "none")};
   background: ${getColor("white")};
-  box-shadow: ${({ theme: { colors } }) =>
-    `0 0 0 2000px ${transparentize(0.2, colors.black.base)}`};
   height: 100vh;
   max-width: 40rem;
   padding: 1.5rem;
@@ -49,9 +58,11 @@ const Drawer = ({ children, onClose, ...props }) => {
   }, []);
 
   return (
-    <StyledDrawer ref={drawerEl} {...props}>
-      {children}
-    </StyledDrawer>
+    <Overlay>
+      <StyledDrawer ref={drawerEl} {...props}>
+        {children}
+      </StyledDrawer>
+    </Overlay>
   );
 };
 
