@@ -72,7 +72,7 @@ const ProductThumb = ({
           <SoldOutBadge availableForSale={availableForSale} />
           <StyledPriceTag
             variants={variants}
-            availableForSale={availabeForSale}
+            availableForSale={availableForSale}
           />
         </ProductLink>
       </Link>
