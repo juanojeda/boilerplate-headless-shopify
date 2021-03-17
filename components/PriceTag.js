@@ -14,8 +14,9 @@ const Currency = styled.span`
   text-transform: uppercase;
 `;
 
-const PriceTag = ({ variants, align = "center" }) => {
+const PriceTag = ({ variants, align = "center", availableForSale }) => {
   const variant = variants[0];
+  if (!availableForSale) return null;
   return (
     <Price $align={align}>
       {formatPrice(variant.priceV2)} <Currency>aud</Currency>

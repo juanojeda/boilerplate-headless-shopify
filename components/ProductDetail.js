@@ -104,7 +104,11 @@ const ProductDetail = ({
       <StyledTitle level={isMedia("xs") ? "H3" : "H2"}>{title}</StyledTitle>
       <SaleWrapper>
         <SoldOutBadge availableForSale={availableForSale} />
-        <PriceTag align="left" variants={variants} />
+        <PriceTag
+          align="left"
+          variants={variants}
+          availableForSale={availableForSale}
+        />
 
         <AddToCartButton
           availableForSale={availableForSale}
