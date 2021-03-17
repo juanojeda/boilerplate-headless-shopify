@@ -70,7 +70,7 @@ const ProductThumb = ({
           <StyledImageGrid layout="mosaic" images={images} />
           <ProductTitle>{title}</ProductTitle>
           <SoldOutBadge availableForSale={availableForSale} />
-          <StyledPriceTag variants={variants} />
+          {availableForSale && <StyledPriceTag variants={variants} />}
         </ProductLink>
       </Link>
       <CTA availableForSale={availableForSale} variants={variants} />
