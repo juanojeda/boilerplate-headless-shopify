@@ -4,7 +4,7 @@ const NAV_ITEMS = [
     route: "/",
   },
   {
-    title: "Sold",
+    title: "Past work",
     route: "/sold",
   },
 ];
