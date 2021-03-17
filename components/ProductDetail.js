@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
 import styled from "styled-components";
 import useMedia from "../hooks/useMedia";
+import { useNavData } from "../hooks/useNav";
 import { getMedia } from "../utils/themeHelpers";
 import AddToCartButton from "./AddToCartButton";
 import ImageViewer from "./ImageViewer";
@@ -96,8 +97,14 @@ const ProductDetail = ({
   images,
   descriptionHtml,
   template,
+  navContent,
 }) => {
   const { isMedia } = useMedia();
+  const { setCmsPageData } = useNavData();
+
+  useEffect(() => {
+    setCmsPageData(navContent);
+  }, [setCmsPageData]);
 
   return (
     <Wrapper role="main">

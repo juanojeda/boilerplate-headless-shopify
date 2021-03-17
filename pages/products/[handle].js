@@ -35,9 +35,9 @@ export async function getStaticProps({ params: { handle } }) {
   return { props: { product, template: productDetailTemplate } };
 }
 
-const ProductDetailPage = ({ product, template }) => {
+const ProductDetailPage = ({ product, template, navContent }) => {
   return product ? (
-    <ProductDetail {...{ ...product, template }} />
+    <ProductDetail {...{ ...product, template, navContent }} />
   ) : (
     <Loading />
   );
