@@ -28,11 +28,14 @@ export async function getStaticProps({ params: { handle } }) {
   const { productByHandle } = await fetchShopifyGQLAsync(productGQL, {
     handle,
   });
-  const { productDetailTemplate } = await fetchContentGQLAsync(
+  const { productDetailTemplate, pages } = await fetchContentGQLAsync(
     productDescriptionGQL
   );
+
   const product = unwrapGqlEdges(productByHandle);
-  return { props: { product, template: productDetailTemplate } };
+  return {
+    props: { product, template: productDetailTemplate, navContent: pages },
+  };
 }
 
 const ProductDetailPage = ({ product, template, navContent }) => {
