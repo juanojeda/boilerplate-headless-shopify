@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
 import styled from "styled-components";
@@ -104,12 +104,16 @@ const ProductDetail = ({
   const { isMedia } = useMedia();
   const { setCmsPageData } = useNavData();
   const { supportsWebp } = useWebSupport();
+  const [imageArray, setImageArray] = useState(null);
 
   useEffect(() => {
     setCmsPageData(navContent);
   }, [setCmsPageData]);
 
-  const imageArray = supportsWebp ? images : imagesLegacy;
+  useEffect(() => {
+    const _imageArray = supportsWebp ? images : imagesLegacy;
+    setImageArray(_imageArray);
+  }, [supportsWebp]);
 
   return (
     <Wrapper role="main">
@@ -128,7 +132,7 @@ const ProductDetail = ({
         />
       </SaleWrapper>
       <ImageViewerContainer>
-        <ImageViewer images={imageArray} forwardLabel={title} />
+        <ImageViewer images={imageArray || imagesLegacy} forwardLabel={title} />
       </ImageViewerContainer>
       <Specifications
         dangerouslySetInnerHTML={{ __html: descriptionHtml }}
