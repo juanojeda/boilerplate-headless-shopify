@@ -18,7 +18,7 @@ export const useWebSupport = () => {
 export const WithWebSupport = ({ children }) => {
   const [supportsWebp, setSupportsWebp] = useState(true);
   useEffect(() => {
-    let canSetSupport;
+    let canSetSupport = true;
     getSupportsWebp().then((isSupported) => {
       if (canSetSupport) {
         setSupportsWebp(isSupported);
