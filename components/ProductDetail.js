@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
 import styled from "styled-components";
 import useMedia from "../hooks/useMedia";
+import { useWebSupport } from "../hooks/useWebSupport";
 import { useNavData } from "../hooks/useNav";
 import { getMedia } from "../utils/themeHelpers";
 import AddToCartButton from "./AddToCartButton";
@@ -95,16 +96,20 @@ const ProductDetail = ({
   title,
   availableForSale,
   images,
+  imagesLegacy,
   descriptionHtml,
   template,
   navContent,
 }) => {
   const { isMedia } = useMedia();
   const { setCmsPageData } = useNavData();
+  const { supportsWebp } = useWebSupport();
 
   useEffect(() => {
     setCmsPageData(navContent);
   }, [setCmsPageData]);
+
+  const imageArray = supportsWebp ? images : imagesLegacy;
 
   return (
     <Wrapper role="main">
@@ -123,7 +128,7 @@ const ProductDetail = ({
         />
       </SaleWrapper>
       <ImageViewerContainer>
-        <ImageViewer images={images} forwardLabel={title} />
+        <ImageViewer images={imageArray} forwardLabel={title} />
       </ImageViewerContainer>
       <Specifications
         dangerouslySetInnerHTML={{ __html: descriptionHtml }}

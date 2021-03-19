@@ -9,6 +9,7 @@ import WithShopifyContext from "../hooks/withShopifyContext";
 import { WithNavData } from "../hooks/useNav";
 import THEME from "../shared/ConstTheme";
 import Favicons from "../components/Favicons";
+import { WithWebSupport } from "../hooks/useWebSupport";
 
 const App = ({ Component, pageProps }) => {
   return (
@@ -19,14 +20,16 @@ const App = ({ Component, pageProps }) => {
       <Favicons />
       <FontsCDN fonts={FONTS} />
       <ThemeProvider theme={THEME}>
-        <WithNavData>
-          <GlobalStyles />
-          <WithShopifyContext>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </WithShopifyContext>
-        </WithNavData>
+        <WithWebSupport>
+          <WithNavData>
+            <GlobalStyles />
+            <WithShopifyContext>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </WithShopifyContext>
+          </WithNavData>
+        </WithWebSupport>
       </ThemeProvider>
     </>
   );

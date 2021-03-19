@@ -31,6 +31,20 @@ const productGQL = gql`
           }
         }
       }
+      imagesLegacy: images(first: 4) {
+        edges {
+          node {
+            src: transformedSrc(
+              maxHeight: 430
+              maxWidth: 430
+              scale: 2
+              preferredContentType: JPG
+            )
+            altText
+            id
+          }
+        }
+      }
     }
   }
 `;
