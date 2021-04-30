@@ -14,7 +14,9 @@ const Wrapper = styled.div`
   grid-row-gap: 1.5rem;
   position: relative;
 `;
-const MainImage = styled(Image)``;
+const MainImage = styled(Image)`
+  min-height: 30rem;
+`;
 const NavIcon = styled(Icon).attrs({ icon: MobileChevronMajor })`
   background: ${(props) => transparentize(0.7, getColor("black")(props))};
   fill: ${(props) => transparentize(0.1, getColor("white")(props))};
@@ -84,7 +86,7 @@ const ImageViewer = ({ images, className, forwardLabel }) => {
       aria-label={`Various angles of the product: ${forwardLabel}`}
     >
       <MainImage
-        loaded={isLoaded}
+        loaded={true}
         src={currentHero.src}
         aria-labelledby={forwardLabel}
       />
